@@ -12,28 +12,26 @@ app.get("/", (req, res) => {
 	new Promise(async (resolve, reject) => {
 		try {
             //for test data
-            const testUrl = 'sandbox-api.coinmarketcap.com'
+            const url = 'sandbox-api.coinmarketcap.com'
             //for real data
-            // const realUrl = 'pro-api.coinmarketcap.com'
+            // const url = 'pro-api.coinmarketcap.com'
+			// query string doesn't work for test api
 			response = await axios.get(
-				`https://${testUrl}/v1/cryptocurrency/listings/latest`,
+				`https://${url}/v1/cryptocurrency/listings/latest?start=1&limit=5`,
 				{
 					headers: {
-						"X-CMC_PRO_API_KEY":
-							process.env.testApiKey,
+						"X-CMC_PRO_API_KEY": process.env.apiKey,
 					},
 				}
 			);
 		} catch (ex) {
 			response = null;
 			// error
-			console.log(ex);
 			reject(ex);
 		}
 		if (response) {
 			// success
 			const json = response.data;
-			console.log(json);
 			resolve(json);
 		}
 	}).then((json) => res.json(json));

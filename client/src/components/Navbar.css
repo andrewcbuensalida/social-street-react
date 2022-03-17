@@ -1,0 +1,21 @@
+.Navbar_nav {
+	display: flex;
+	align-items: center;
+}
+
+.Navbar_nav > * {
+	margin: 10px;
+	cursor: pointer;
+}
+
+.Navbar_logo_icon {
+    height: 50px;
+}
+.Navbar_menu_icon {
+	height: 25px;
+}
+
+.Navbar_account_icon {
+	color: var(--content-color);
+	margin-left: auto;
+}

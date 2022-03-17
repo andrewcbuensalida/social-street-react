@@ -1,0 +1,15 @@
+:root {
+	--bg-color: rgb(37, 37, 65);
+	--content-color: white;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+.App {
+	height: 100vh;
+	background-color: var(--bg-color);
+  color: var(--content-color);
+}
