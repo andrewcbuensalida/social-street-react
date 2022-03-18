@@ -41,7 +41,13 @@ function CoinRow({ coin }) {
 					prefix={"$"}
 				/>
 			</div>
-			<div>
+			<div
+				className={`CoinRow_${
+					coin.quote.USD.percent_change_24h < 0
+						? "negative"
+						: "positive"
+				}`}
+			>
 				<CurrencyFormat
 					renderText={(value) => value}
 					decimalScale={2}

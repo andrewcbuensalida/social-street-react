@@ -1,7 +1,7 @@
 .CoinRow_row {
 	display: grid;
-    grid-template-columns: 2fr 5fr 10fr 10fr 6fr 6fr;
-	border: 0.1px solid rgb(94, 94, 94);
+    grid-template-columns: 3fr 5fr 11fr 9fr 6fr 5fr;
+	border: 0.1px solid rgb(48, 48, 48);
 }
 
 .CoinRow_icon_img {
@@ -10,4 +10,12 @@
 
 .CoinRow_row > * {
     padding: 1em;
+}
+
+.CoinRow_negative{
+    color: rgb(0, 255, 0);
+}
+
+.CoinRow_positive{
+color: red;
 }
