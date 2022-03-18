@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import CoinRow from "./CoinRow";
 import "./CoinsList.css";
+import {MarketContext} from '../Context/MarketContext'
 
-function CoinsList({ coins }) {
-	console.log(`This is coins`);
-	console.log(coins);
+function CoinsList() {
+	const {coins} = useContext(MarketContext)
 
 	return (
 		<div>

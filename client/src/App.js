@@ -12,8 +12,8 @@ function App() {
 			<main className="App_main">
 				<Routes>
 					<Route path="/markets" element={<Markets />} />
-					<Route path="/" element={<Navigate to="/markets/" />} />
-					<Route path="/analysis" element={<Analysis />} />
+					<Route path="/" element={<Navigate to="/markets" />} />
+					<Route path="/analysis/:symbol" element={<Analysis />}/>
 					<Route
 						path="*"
 						element={
