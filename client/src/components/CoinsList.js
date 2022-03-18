@@ -17,7 +17,7 @@ function CoinsList() {
 				<div>Daily Change</div>
 			</div>
 			{coins.map((coin) => (
-				<CoinRow coin={coin} />
+				<CoinRow key={coin.id} coin={coin} />
 			))}
 		</div>
 	);

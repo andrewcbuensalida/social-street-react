@@ -8,10 +8,12 @@ function CoinRow({ coin }) {
 	const [icon, setIcon] = useState(null);
 	useEffect(() => {
 		async function loadIcon() {
-			const icon = await import(
-				`../assets/coinIcons/${coin.symbol.toLowerCase()}.png`
-			);
-			setIcon(icon);
+			try {
+				const icon = await import(
+					`../assets/coinIcons/${coin.symbol.toLowerCase()}.png`
+				);
+				setIcon(icon);
+			} catch (e) {}
 		}
 		loadIcon();
 	}, []);
