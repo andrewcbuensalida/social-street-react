@@ -1,5 +1,4 @@
 import React from "react";
-
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";
 import {
@@ -29,13 +28,17 @@ import {
 } from "react-financial-charts";
 import { initialData } from "./data";
 
-function ReactFinancialChart  () {
+
+function ReactFinancialChart({coin}) {
+    console.log(`This is coin`)
+    console.log(coin)
+    
 	const ScaleProvider =
 		discontinuousTimeScaleProviderBuilder().inputDateAccessor(
 			(d) => new Date(d.date)
 		);
-	const height = 700;
-	const width = 900;
+	const height = 400;
+	const width = 500;
 	const margin = { left: 0, right: 48, top: 0, bottom: 24 };
 
 	const ema12 = ema()
@@ -74,7 +77,7 @@ function ReactFinancialChart  () {
 	const yExtents = (data) => {
 		return [data.high, data.low];
 	};
-	const dateTimeFormat = "%d %b";
+	const dateTimeFormat = "%d %b %y %H:%M";
 	const timeDisplayFormat = timeFormat(dateTimeFormat);
 
 	const barChartExtents = (data) => {
@@ -100,7 +103,7 @@ function ReactFinancialChart  () {
 	};
 
 	const openCloseColor = (data) => {
-		return data.close > data.open ? "#26a69a" : "#ef5350";
+		return data.close > data.open ? "#26a69a" : "#fc3734";
 	};
 
 	return (
@@ -117,6 +120,7 @@ function ReactFinancialChart  () {
 			xExtents={xExtents}
 			zoomAnchor={lastVisibleItemBasedZoomAnchor}
 		>
+			{/* total volume traded */}
 			<Chart
 				id={2}
 				height={barChartHeight}
@@ -125,30 +129,44 @@ function ReactFinancialChart  () {
 			>
 				<BarSeries fillStyle={volumeColor} yAccessor={volumeSeries} />
 			</Chart>
+
+			{/* main */}
 			<Chart id={3} height={chartHeight} yExtents={candleChartExtents}>
-				<XAxis showGridLines showTickLabel={false} />
-				<YAxis showGridLines tickFormat={pricesDisplayFormat} />
+				<XAxis showGridLines={false} showTickLabel={false} />
+				<YAxis showGridLines={false} tickFormat={pricesDisplayFormat} />
+
 				<CandlestickSeries />
-				<LineSeries
+
+				{/* blue line */}
+				{/* <LineSeries
 					yAccessor={ema26.accessor()}
 					strokeStyle={ema26.stroke()}
-				/>
-				<CurrentCoordinate
+				/> */}
+
+				{/* dot on blue line */}
+				{/* <CurrentCoordinate
 					yAccessor={ema26.accessor()}
 					fillStyle={ema26.stroke()}
-				/>
-				<LineSeries
+				/> */}
+
+				{/* red line */}
+				{/* <LineSeries
 					yAccessor={ema12.accessor()}
 					strokeStyle={ema12.stroke()}
-				/>
-				<CurrentCoordinate
+				/> */}
+
+				{/* dot on red line */}
+				{/* <CurrentCoordinate
 					yAccessor={ema12.accessor()}
 					fillStyle={ema12.stroke()}
-				/>
+				/> */}
+
 				<MouseCoordinateY
 					rectWidth={margin.right}
 					displayFormat={pricesDisplayFormat}
 				/>
+
+				{/* number box at the end of the chart */}
 				<EdgeIndicator
 					itemType="last"
 					rectWidth={margin.right}
@@ -157,6 +175,7 @@ function ReactFinancialChart  () {
 					displayFormat={pricesDisplayFormat}
 					yAccessor={yEdgeIndicator}
 				/>
+
 				<MovingAverageTooltip
 					origin={[8, 24]}
 					options={[
@@ -175,9 +194,13 @@ function ReactFinancialChart  () {
 					]}
 				/>
 
-				<ZoomButtons />
-				<OHLCTooltip origin={[8, 16]} />
+				{/* <ZoomButtons /> */}
+
+				{/* legend for opening high low close of where the cursor is */}
+				<OHLCTooltip origin={[8, 16]} textFill={openCloseColor} labelFill='white' fontSize={13} />
 			</Chart>
+
+			{/* elder ray chart shows bull bear power */}
 			<Chart
 				id={4}
 				height={elderRayHeight}
@@ -185,7 +208,7 @@ function ReactFinancialChart  () {
 				origin={elderRayOrigin}
 				padding={{ top: 8, bottom: 8 }}
 			>
-				<XAxis showGridLines gridLinesStrokeStyle="#e0e3eb" />
+				<XAxis showGridLines={false} gridLinesStrokeStyle="#e0e3eb" />
 				<YAxis ticks={4} tickFormat={pricesDisplayFormat} />
 
 				<MouseCoordinateX displayFormat={timeDisplayFormat} />
@@ -207,10 +230,10 @@ function ReactFinancialChart  () {
 					origin={[8, 16]}
 				/>
 			</Chart>
+
 			<CrossHairCursor />
 		</ChartCanvas>
 	);
-};
+}
 
-
-export default ReactFinancialChart; 
+export default ReactFinancialChart;
