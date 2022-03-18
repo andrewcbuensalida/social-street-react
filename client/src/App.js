@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Markets from "./Routes/Markets";
+import Analysis from "./Routes/Analysis";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<Routes>
 					<Route path="/markets" element={<Markets />} />
 					<Route path="/" element={<Navigate to="/markets/" />} />
+					<Route path="/analysis" element={<Analysis />} />
 					<Route
 						path="*"
 						element={

@@ -2,6 +2,12 @@
 	display: grid;
 	grid-template-columns: 3fr 5fr 11fr 9fr 6fr 5fr;
 	border: 0.1px solid rgb(48, 48, 48);
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.CoinRow_row:hover{
+    background-color: rgba(255, 255, 255,.1);
 }
 
 .CoinRow_icon_img {
@@ -10,6 +16,10 @@
 
 .CoinRow_row > * {
 	padding: 1em;
+}
+
+.CoinRow_symbol{
+    color: var(--primary-color);
 }
 
 .CoinRow_negative {

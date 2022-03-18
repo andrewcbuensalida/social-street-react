@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CurrencyFormat from "react-currency-format";
+import { Link, useLocation } from "react-router-dom";
+
 import "./CoinRow.css";
 
 function CoinRow({ coin }) {
@@ -14,11 +16,11 @@ function CoinRow({ coin }) {
 		loadIcon();
 	}, []);
 	return (
-		<div key={coin.id} className="CoinRow_row">
+		<Link to={`/analysis/${coin.id}`} key={coin.id} className="CoinRow_row">
 			<div className="CoinRow_icon">
 				<img className="CoinRow_icon_img" src={icon?.default} />
 			</div>
-			<div>{coin.symbol}</div>
+			<div className="CoinRow_symbol">{coin.symbol}</div>
 
 			<div>{coin.name}</div>
 			<div>
@@ -57,7 +59,7 @@ function CoinRow({ coin }) {
 				/>
 				%
 			</div>
-		</div>
+		</Link>
 	);
 }
 
