@@ -16,7 +16,7 @@ function CoinRow({ coin }) {
 			} catch (e) {}
 		}
 		loadIcon();
-	}, []);
+	}, [coin.symbol]);
 	return (
 		<Link to={`/analysis/${coin.id}`} key={coin.id} className="CoinRow_row">
 			<div className="CoinRow_icon">
