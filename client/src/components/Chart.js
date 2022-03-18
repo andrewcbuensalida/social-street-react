@@ -33,6 +33,7 @@ export default class ApexChart extends React.Component {
 				},
 			],
 			options: {
+
 				title: {
 					text: "CandleStick Chart",
 					align: "left",
@@ -43,7 +44,7 @@ export default class ApexChart extends React.Component {
 					id: "candles",
 					toolbar: {
 						autoSelected: "pan",
-						show: false,
+						show: true,
 					},
 					zoom: {
 						enabled: false,
@@ -85,7 +86,7 @@ export default class ApexChart extends React.Component {
 						},
 						{
 							x: new Date(1538784000000),
-							y:6423,
+							y: 6423,
 						},
 						{
 							x: new Date(1538785800000),
