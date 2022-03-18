@@ -1,4 +1,5 @@
 import React,{useContext} from 'react'
+import ApexChart from '../components/Chart'
 import {MarketContext} from '../Context/MarketContext'
 
 function Analysis() {
@@ -7,7 +8,9 @@ function Analysis() {
     console.log(coins)
     
   return (
-    <div>Analysis</div>
+    <div>Analysis
+        <ApexChart/>
+    </div>
   )
 }
 
