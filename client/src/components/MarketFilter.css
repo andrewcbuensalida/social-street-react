@@ -1,0 +1,8 @@
+.MarketFilter_filter{
+    display: flex;
+    padding-left: 20px;
+}
+
+.MarketFilter_filter > * {
+    padding: 1em;
+}

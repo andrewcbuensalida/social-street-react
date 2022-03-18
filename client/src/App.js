@@ -1,26 +1,29 @@
-import { useEffect } from "react";
-import axios from "axios";
+
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import CoinsList from "./components/CoinsList";
 import Footer from "./components/Footer";
+import Markets from "./Routes/Markets";
 
 function App() {
-	useEffect(() => {
-		async function getCrypto() {
-			const response = await axios.get("http://localhost:4000/");
 
-			console.log(`This is response`);
-			console.log(response);
-		}
-		getCrypto();
-	}, []);
 
 	return (
 		<div className="App">
 			<Navbar />
-			<h1>Markets</h1>
-			<CoinsList />
+			<Routes>
+				<Route path="/markets" element={<Markets />} />
+				<Route path="/" element={<Navigate to="/markets/" />} />
+				<Route
+					path="*"
+					element={
+						<main style={{ padding: "1rem" }}>
+							<p>There's nothing here!</p>
+						</main>
+					}
+				/>
+			</Routes>
+
 			<Footer />
 		</div>
 	);

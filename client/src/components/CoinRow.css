@@ -1,0 +1,13 @@
+.CoinRow_row {
+	display: grid;
+    grid-template-columns: 2fr 5fr 10fr 10fr 6fr 6fr;
+	border: 0.1px solid rgb(94, 94, 94);
+}
+
+.CoinRow_icon_img {
+    height: 20px;
+}
+
+.CoinRow_row > * {
+    padding: 1em;
+}

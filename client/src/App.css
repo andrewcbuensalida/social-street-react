@@ -11,5 +11,6 @@
 .App {
 	height: 100vh;
 	background-color: var(--bg-color);
-  color: var(--content-color);
+	color: var(--content-color);
+	padding: .5em;
 }
