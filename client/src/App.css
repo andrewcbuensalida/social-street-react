@@ -1,5 +1,5 @@
 :root {
-	--bg-color: rgb(20, 20, 41);
+	--bg-color: rgb(12, 12, 26);
 	--content-color: white;
 }
 
@@ -12,5 +12,10 @@
 	height: 100vh;
 	background-color: var(--bg-color);
 	color: var(--content-color);
-	padding: .5em;
+	padding: 0.5em;
+}
+
+.App_main {
+	max-width: 800px;
+	margin: 0 auto;
 }

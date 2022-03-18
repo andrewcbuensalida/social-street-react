@@ -1,21 +1,21 @@
 .CoinRow_row {
 	display: grid;
-    grid-template-columns: 3fr 5fr 11fr 9fr 6fr 5fr;
+	grid-template-columns: 3fr 5fr 11fr 9fr 6fr 5fr;
 	border: 0.1px solid rgb(48, 48, 48);
 }
 
 .CoinRow_icon_img {
-    height: 20px;
+	height: 20px;
 }
 
 .CoinRow_row > * {
-    padding: 1em;
+	padding: 1em;
 }
 
-.CoinRow_negative{
-    color: rgb(0, 255, 0);
+.CoinRow_negative {
+	color: rgb(0, 255, 0);
 }
 
-.CoinRow_positive{
-color: red;
+.CoinRow_positive {
+	color: red;
 }
