@@ -77,7 +77,10 @@ function ReactFinancialChart({ coin }) {
 		return [data.high, data.low];
 	};
 	const dateTimeFormat = "%d %b %y %H:%M";
-	const timeDisplayFormat = timeFormat(dateTimeFormat);
+	const dateTimeDisplayFormat = timeFormat(dateTimeFormat);
+
+	const myTimeFormat = "%H:%M";
+	const timeDisplayFormat = timeFormat(myTimeFormat);
 
 	const barChartExtents = (data) => {
 		return data.volume;
@@ -118,7 +121,6 @@ function ReactFinancialChart({ coin }) {
 			xAccessor={xAccessor}
 			xExtents={xExtents}
 			zoomAnchor={lastVisibleItemBasedZoomAnchor}
-            
 		>
 			{/* total volume traded */}
 			<Chart
@@ -131,9 +133,18 @@ function ReactFinancialChart({ coin }) {
 			</Chart>
 
 			{/* main */}
-			<Chart id={3} height={chartHeight} yExtents={candleChartExtents} >
-				<XAxis showGridLines={false} showTickLabel={false} />
-				<YAxis showGridLines={false} tickFormat={pricesDisplayFormat} tickLabelFill='#999' />
+			<Chart id={3} height={chartHeight} yExtents={candleChartExtents}>
+				<XAxis
+					showGridLines={false}
+					showTickLabel={false}
+					strokeStyle="#777"
+				/>
+				<YAxis
+					showGridLines={false}
+					tickFormat={pricesDisplayFormat}
+					tickLabelFill="#999"
+					strokeStyle="#777"
+				/>
 
 				<CandlestickSeries />
 
@@ -214,11 +225,22 @@ function ReactFinancialChart({ coin }) {
 				origin={elderRayOrigin}
 				padding={{ top: 8, bottom: 8 }}
 			>
-				<XAxis showGridLines={false} gridLinesStrokeStyle="#e0e3eb" />
-				<YAxis ticks={4} tickFormat={pricesDisplayFormat} />
+				<XAxis
+					showGridLines={false}
+					gridLinesStrokeStyle="#e0e3eb"
+					tickLabelFill="#999"
+					strokeStyle="#777"
+					tickFormat={timeDisplayFormat}
+				/>
+				<YAxis
+					ticks={4}
+					tickFormat={pricesDisplayFormat}
+					tickLabelFill="#999"
+					strokeStyle="#777"
+				/>
 
 				{/* time display on bottom where cursor is */}
-				<MouseCoordinateX displayFormat={timeDisplayFormat} />
+				<MouseCoordinateX displayFormat={dateTimeDisplayFormat} />
 
 				{/* price display on the right where cursor is */}
 				<MouseCoordinateY

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext ,useEffect,useState} from "react";
 import { useParams } from "react-router-dom";
 import ReactFinancialChart from "../components/ReactFinancialChart";
 import { MarketContext } from "../Context/MarketContext";
@@ -9,6 +9,14 @@ function Analysis() {
 	const { id } = useParams();
 	console.log(`This is coins`);
 	console.log(coins);
+  useEffect(() => {
+    // const coin = coins.find((coin)=>)
+  
+    return () => {
+      
+    }
+  }, [])
+  
 
 	return (
 		<div>
