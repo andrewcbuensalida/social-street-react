@@ -39,7 +39,12 @@ app.get("/api/v1/markets", (req, res) => {
 	}).then((json) => res.json(json));
 });
 
-app.get('/api/v1/analysis/:id',)
+app.get('/api/v1/analysis/:id',(req,res)=>{
+	console.log(`This is req.params.id`)
+	console.log(req.params.id)
+	
+	res.json({hello:'yeah'})
+})
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
