@@ -14,6 +14,8 @@ https://docs.coinapi.io/?javascript#list-all-assets-get
 Although I could probably manually compute daily percentage change by getting the price from the day before with 
 /v1/quotes/{symbol_id}/history?time_start={time_start}&time_end={time_end}&limit={limit}
 
+
+This gets ohlcv but need their special symbol id. This contains volume too.
 		const symbols = await axios.get(
 			`https://rest.coinapi.io/v1/symbols/`
 		);
@@ -21,7 +23,7 @@ Although I could probably manually compute daily percentage change by getting th
 		console.log(symbols.data);
 		try {
 			response = await axios.get(
-				`https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_${req.params.symbol}_USD/latest?period_id=1MIN&limit=5`,
+				`https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_${req.params.symbol}_USD/latest?period_id=2MIN&limit=5`,
 				{
 					headers: {
 						"X-CoinAPI-Key": process.env.coinApiKey,
@@ -30,6 +32,17 @@ Although I could probably manually compute daily percentage change by getting th
 			);
 
 
+Another method, although inclomplete of volume, is this. This also has a bug, the high and low price is the same if 1MIN is selected as the time period, but 2min works.
+response = await axios.get(
+				`https://rest.coinapi.io/v1/exchangerate/${req.params.symbol.toUpperCase()}/USD/history?period_id=2MIN&1975-01-01T00:00:00&time_end=${new Date().toISOString()}&limit=20`,
+				{
+					headers: {
+						"X-CoinAPI-Key": process.env.coinApiKey,
+					},
+				}
+			);
+
+            
 ======================================
 https://react-financial.github.io/react-financial-charts/?path=/docs/features-axis--y-axis
 to style chart
@@ -45,7 +58,7 @@ The problem with coingecko is the ohlc is every 30 minutes, as opposed to coinap
 https://api.coingecko.com/api/v3/coins/cardano/ohlc?vs_currency=usd&days=1
 
 Probably have to use coinapi for the ohlc, but then they use symbol_id which is a combinatin of symbol and other stuff like exchange id, symbol type, etc.
-Might have to use this coinapi endpoint to get ohlc
+Might have to use this coinapi endpoint to get ohlc, the problem is there's no volume traded.
 
 	response = await axios.get(
 				`https://rest.coinapi.io/v1/exchangerate/${req.params.symbol.toUpperCase()}/USD/history?period_id=1MIN&1975-01-01T00:00:00&time_end=${new Date().toISOString()}&limit=10`,

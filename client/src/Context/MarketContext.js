@@ -13,9 +13,6 @@ export function MarketContextProvider({ children }) {
 			const response = await axios.get(
 				"http://localhost:4000/api/v1/markets"
 			);
-			console.log(`This is response.data.data`);
-			console.log(response.data);
-
 			setCoins(response.data);
 		}
 		getCrypto();

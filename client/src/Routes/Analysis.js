@@ -7,7 +7,6 @@ import "./Analysis.css";
 function Analysis() {
 	const [ohlcvd, setOhlcvd] = useState([{}]);
 	const { symbol } = useParams();
-	console.log(`This is coins`);
 
 	useEffect(() => {
 		async function getOhlcvd(symbol) {

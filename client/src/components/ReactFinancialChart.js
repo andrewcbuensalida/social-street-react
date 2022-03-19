@@ -31,16 +31,20 @@ import { initialData } from "./data";
 function ReactFinancialChart({ ohlcvd }) {
 	const [formattedOhlcvd, setFormattedOhlcvd] = useState([{}]);
 
+    console.log(`This is formattedOhlcvd`)
+    console.log(formattedOhlcvd)
+    
 	useEffect(() => {
 		setFormattedOhlcvd(
 			ohlcvd.map((dataPoint) => ({
-				date: dataPoint.time_close,
-				open: dataPoint.price_open,
-				low: dataPoint.price_low,
-				high: dataPoint.price_high,
-				close: dataPoint.price_close,
-				volume: dataPoint.volume_traded,
+				date: dataPoint.time_period_end,
+				open: dataPoint.rate_open,
+				low: dataPoint.rate_low,
+				high: dataPoint.rate_high,
+				close: dataPoint.rate_close,
+				volume: 67639193,
 			}))
+            // initialData
 		);
 	}, [ohlcvd]);
 

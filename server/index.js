@@ -39,7 +39,7 @@ app.get("/api/v1/analysis/:symbol", async (req, res) => {
 	new Promise(async (resolve, reject) => {
 		try {
 			response = await axios.get(
-				`https://rest.coinapi.io/v1/exchangerate/${req.params.symbol.toUpperCase()}/USD/history?period_id=1MIN&1975-01-01T00:00:00&time_end=${new Date().toISOString()}&limit=10`,
+				`https://rest.coinapi.io/v1/exchangerate/${req.params.symbol.toUpperCase()}/USD/history?period_id=2MIN&1975-01-01T00:00:00&time_end=${new Date().toISOString()}&limit=20`,
 				{
 					headers: {
 						"X-CoinAPI-Key": process.env.coinApiKey,
