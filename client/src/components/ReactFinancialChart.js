@@ -28,25 +28,25 @@ import {
 } from "react-financial-charts";
 import { initialData } from "./data";
 
-function ReactFinancialChart({ ohlcvd }) {
-	const [formattedOhlcvd, setFormattedOhlcvd] = useState([{}]);
+function ReactFinancialChart({ ohlcv }) {
+	const [formattedOhlcv, setFormattedOhlcv] = useState([{}]);
 
     console.log(`This is formattedOhlcvd`)
-    console.log(formattedOhlcvd)
+    console.log(formattedOhlcv)
     
 	useEffect(() => {
-		setFormattedOhlcvd(
-			ohlcvd.map((dataPoint) => ({
-				date: dataPoint.time_period_end,
-				open: dataPoint.rate_open,
-				low: dataPoint.rate_low,
-				high: dataPoint.rate_high,
-				close: dataPoint.rate_close,
-				volume: 67639193,
+		setFormattedOhlcv(
+			ohlcv.map((dataPoint) => ({
+				date: dataPoint[0],
+				open: dataPoint[1],
+				high: dataPoint[2],
+				low: dataPoint[3],
+				close: dataPoint[4],
+				// volume: 67639193,
 			}))
-            // initialData
+			// initialData
 		);
-	}, [ohlcvd]);
+	}, [ohlcv]);
 
 	const ScaleProvider =
 		discontinuousTimeScaleProviderBuilder().inputDateAccessor(
@@ -74,9 +74,9 @@ function ReactFinancialChart({ ohlcvd }) {
 
 	const elder = elderRay();
 
-	const calculatedData = elder(ema26(ema12(formattedOhlcvd)));
+	const calculatedData = elder(ema26(ema12(formattedOhlcv)));
 	const { data, xScale, xAccessor, displayXAccessor } =
-		ScaleProvider(formattedOhlcvd);
+		ScaleProvider(formattedOhlcv);
 	const pricesDisplayFormat = format(".2f");
 	const max = xAccessor(data[data.length - 1]);
 	const min = xAccessor(data[Math.max(0, data.length - 100)]);

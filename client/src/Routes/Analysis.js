@@ -5,24 +5,24 @@ import axios from "axios";
 import "./Analysis.css";
 
 function Analysis() {
-	const [ohlcvd, setOhlcvd] = useState([{}]);
-	const { symbol } = useParams();
+	const [ohlcv, setOhlcv] = useState([{}]);
+	const { id } = useParams();
 
 	useEffect(() => {
-		async function getOhlcvd(symbol) {
-			const coin = await axios.get(`http://localhost:4000/api/v1/analysis/${symbol}`);
+		async function getOhlcv(id) {
+			const coin = await axios.get(`http://localhost:4000/api/v1/analysis/${id}`);
       
-      setOhlcvd(coin.data)
+      setOhlcv(coin.data)
 		}
 
-		getOhlcvd(symbol);
-	}, [symbol]);
+		getOhlcv(id);
+	}, [id]);
   
 	return (
 		<div>
 			Analysis
 			<div className="Analysis_chart_container">
-				<ReactFinancialChart ohlcvd={ohlcvd}/>
+				<ReactFinancialChart ohlcv={ohlcv}/>
 			</div>
 		</div>
 	);

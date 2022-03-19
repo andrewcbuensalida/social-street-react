@@ -42,7 +42,21 @@ response = await axios.get(
 				}
 			);
 
-            
+
+Coinapi asset id like btc is different from their symbol id which is <exchange>_<assetid>_etc...
+
+
+Even when filtering by by asset id, still produces 100,000 results, which takes 5 seconds. Probably have to have another server that fetches asset id and writes it to a file, but then how will I know which symbol to use, because for each ticker like btc or eth, there are many symbols like akfaewr_btc or osdfw_eth. Might have to settle for the 30 minute periods, and no volume of coingecko until we can pay for coin market cap.
+
+responseCoinApi = await axios.get(
+				`https://rest.coinapi.io/v1/symbols?filter_asset_id=ETH`,
+				{
+					headers: {
+						"X-CoinAPI-Key": process.env.coinApiKey,
+					},
+				}
+			);
+
 ======================================
 https://react-financial.github.io/react-financial-charts/?path=/docs/features-axis--y-axis
 to style chart

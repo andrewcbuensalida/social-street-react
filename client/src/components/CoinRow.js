@@ -6,7 +6,7 @@ import "./CoinRow.css";
 
 function CoinRow({ coin }) {
 	return (
-		<Link to={`/analysis/${coin.symbol}`} key={coin.id} className="CoinRow_row">
+		<Link to={`/analysis/${coin.id}`} key={coin.id} className="CoinRow_row">
 			<div className="CoinRow_icon">
 				<img className="CoinRow_icon_img" src={coin.image} />
 			</div>
