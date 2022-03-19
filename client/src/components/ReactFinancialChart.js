@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";
 import {
@@ -28,9 +28,21 @@ import {
 } from "react-financial-charts";
 import { initialData } from "./data";
 
-function ReactFinancialChart({ coin }) {
-	console.log(`This is coin`);
-	console.log(coin);
+function ReactFinancialChart({ ohlcvd }) {
+	const [formattedOhlcvd, setFormattedOhlcvd] = useState([{}]);
+
+	useEffect(() => {
+		setFormattedOhlcvd(
+			ohlcvd.map((dataPoint) => ({
+				date: dataPoint.time_close,
+				open: dataPoint.price_open,
+				low: dataPoint.price_low,
+				high: dataPoint.price_high,
+				close: dataPoint.price_close,
+				volume: dataPoint.volume_traded,
+			}))
+		);
+	}, [ohlcvd]);
 
 	const ScaleProvider =
 		discontinuousTimeScaleProviderBuilder().inputDateAccessor(
@@ -58,9 +70,9 @@ function ReactFinancialChart({ coin }) {
 
 	const elder = elderRay();
 
-	const calculatedData = elder(ema26(ema12(initialData)));
+	const calculatedData = elder(ema26(ema12(formattedOhlcvd)));
 	const { data, xScale, xAccessor, displayXAccessor } =
-		ScaleProvider(initialData);
+		ScaleProvider(formattedOhlcvd);
 	const pricesDisplayFormat = format(".2f");
 	const max = xAccessor(data[data.length - 1]);
 	const min = xAccessor(data[Math.max(0, data.length - 100)]);

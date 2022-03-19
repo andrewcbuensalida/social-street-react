@@ -11,11 +11,13 @@ app.get("/api/v1/markets", (req, res) => {
 	let response = null;
 	new Promise(async (resolve, reject) => {
 		try {
-			response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&price_change_percentage=24h&sparkline=true`);
+			response = await axios.get(
+				`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&price_change_percentage=24h&sparkline=true`
+			);
 
-			console.log(`This is response.data`)
-			console.log(response.data)
-			
+			console.log(`This is response.data`);
+			console.log(response.data);
+
 			//to get the icon url from coinapi
 		} catch (ex) {
 			response = null;
@@ -31,20 +33,23 @@ app.get("/api/v1/markets", (req, res) => {
 });
 
 //
-app.get("/api/v1/analysis/:id", async (req, res) => {
-	console.log(`This is req.params.id`);
-	console.log(req.params.id);
+app.get("/api/v1/analysis/:symbol", async (req, res) => {
 
 	let response = null;
 	new Promise(async (resolve, reject) => {
 		try {
 			response = await axios.get(
-				`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin${req.params.symbol}_USD/latest?period_id=1MIN&limit=5`
+				`https://rest.coinapi.io/v1/exchangerate/${req.params.symbol.toUpperCase()}/USD/history?period_id=1MIN&1975-01-01T00:00:00&time_end=${new Date().toISOString()}&limit=10`,
+				{
+					headers: {
+						"X-CoinAPI-Key": process.env.coinApiKey,
+					},
+				}
 			);
 
-			console.log(`This is response`)
-			console.log(response)
-			
+			console.log(`This is response`);
+			console.log(response.data);
+
 			//to get the icon url from coinapi
 		} catch (ex) {
 			response = null;
