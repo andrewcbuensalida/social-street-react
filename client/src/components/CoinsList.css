@@ -1,6 +1,6 @@
 .CoinsList_header {
 	display: grid;
-    grid-template-columns: 3fr 5fr 11fr 9fr 6fr 5fr;
+    grid-template-columns: 3fr 5fr 11fr 11fr 6fr 5fr;
 	border: 0.1px solid rgb(94, 94, 94);
 
 }

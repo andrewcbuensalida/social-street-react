@@ -5,31 +5,19 @@ import { Link } from "react-router-dom";
 import "./CoinRow.css";
 
 function CoinRow({ coin }) {
-	const [icon, setIcon] = useState(null);
-	useEffect(() => {
-		async function loadIcon() {
-			try {
-				const icon = await import(
-					`../assets/coinIcons/${coin.symbol.toLowerCase()}.png`
-				);
-				setIcon(icon);
-			} catch (e) {}
-		}
-		loadIcon();
-	}, [coin.symbol]);
 	return (
-		<Link to={`/analysis/${coin.symbol}`} key={coin.id} className="CoinRow_row">
+		<Link to={`/analysis/${coin.id}`} key={coin.id} className="CoinRow_row">
 			<div className="CoinRow_icon">
-				<img className="CoinRow_icon_img" src={icon?.default} />
+				<img className="CoinRow_icon_img" src={coin.image} />
 			</div>
-			<div className="CoinRow_symbol">{coin.symbol}</div>
+			<div className="CoinRow_id">{coin.symbol.toUpperCase()}</div>
 
 			<div>{coin.name}</div>
 			<div>
 				<CurrencyFormat
 					renderText={(value) => value}
 					decimalScale={2}
-					value={coin.quote.USD.volume_24h}
+					value={coin.market_cap}
 					displayType={"text"}
 					thousandSeparator={true}
 					prefix={"$"}
@@ -38,8 +26,8 @@ function CoinRow({ coin }) {
 			<div>
 				<CurrencyFormat
 					renderText={(value) => value}
-					decimalScale={coin.quote.USD.price < 0.01 ? 7 : 2}
-					value={coin.quote.USD.price}
+					decimalScale={coin.current_price < 0.01 ? 7 : 2}
+					value={coin.current_price}
 					displayType={"text"}
 					thousandSeparator={true}
 					prefix={"$"}
@@ -47,7 +35,7 @@ function CoinRow({ coin }) {
 			</div>
 			<div
 				className={`CoinRow_${
-					coin.quote.USD.percent_change_24h < 0
+					coin.price_change_percentage_24h < 0
 						? "negative"
 						: "positive"
 				}`}
@@ -55,7 +43,7 @@ function CoinRow({ coin }) {
 				<CurrencyFormat
 					renderText={(value) => value}
 					decimalScale={2}
-					value={coin.quote.USD.percent_change_24h}
+					value={coin.price_change_percentage_24h}
 					displayType={"text"}
 					thousandSeparator={true}
 				/>

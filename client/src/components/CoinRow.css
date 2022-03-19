@@ -1,6 +1,6 @@
 .CoinRow_row {
 	display: grid;
-	grid-template-columns: 3fr 5fr 11fr 9fr 6fr 5fr;
+	grid-template-columns: 3fr 5fr 11fr 11fr 6fr 5fr;
 	border: 0.1px solid rgb(48, 48, 48);
     color: inherit;
     text-decoration: inherit;
@@ -22,7 +22,7 @@
 	padding: 1em;
 }
 
-.CoinRow_symbol{
+.CoinRow_id{
     color: var(--primary-color);
 }
 

@@ -13,3 +13,10 @@ this does not work. error. Trying to get a list of all the symbols aka tickers t
 https://rest.coinapi.io/v1/symbols/
 coin market cap (cmc) costs $95 for 1 month to get open high low close (ohlc) data.
 in coinapi it's free but their symbols are different than cmc.
+
+
+=========================================
+coingecko
+to get a list of coin id symbol and name
+https://api.coingecko.com/api/v3/coins/list
+

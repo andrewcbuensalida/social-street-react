@@ -12,7 +12,7 @@ function CoinsList() {
 				<div></div>
 				<div>Ticker</div>
 				<div>Name</div>
-				<div>24h Volume</div>
+				<div>Market Cap</div>
 				<div>Price</div>
 				<div>Daily Change</div>
 			</div>

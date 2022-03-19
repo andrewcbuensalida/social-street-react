@@ -14,9 +14,9 @@ export function MarketContextProvider({ children }) {
 				"http://localhost:4000/api/v1/markets"
 			);
 			console.log(`This is response.data.data`);
-			console.log(response.data.data);
+			console.log(response.data);
 
-			setCoins(response.data.data);
+			setCoins(response.data);
 		}
 		getCrypto();
 		//polling instead of web sockets
