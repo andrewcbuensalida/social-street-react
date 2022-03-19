@@ -28,11 +28,10 @@ import {
 } from "react-financial-charts";
 import { initialData } from "./data";
 
+function ReactFinancialChart({ coin }) {
+	console.log(`This is coin`);
+	console.log(coin);
 
-function ReactFinancialChart({coin}) {
-    console.log(`This is coin`)
-    console.log(coin)
-    
 	const ScaleProvider =
 		discontinuousTimeScaleProviderBuilder().inputDateAccessor(
 			(d) => new Date(d.date)
@@ -119,6 +118,7 @@ function ReactFinancialChart({coin}) {
 			xAccessor={xAccessor}
 			xExtents={xExtents}
 			zoomAnchor={lastVisibleItemBasedZoomAnchor}
+            
 		>
 			{/* total volume traded */}
 			<Chart
@@ -131,9 +131,9 @@ function ReactFinancialChart({coin}) {
 			</Chart>
 
 			{/* main */}
-			<Chart id={3} height={chartHeight} yExtents={candleChartExtents}>
+			<Chart id={3} height={chartHeight} yExtents={candleChartExtents} >
 				<XAxis showGridLines={false} showTickLabel={false} />
-				<YAxis showGridLines={false} tickFormat={pricesDisplayFormat} />
+				<YAxis showGridLines={false} tickFormat={pricesDisplayFormat} tickLabelFill='#999' />
 
 				<CandlestickSeries />
 
@@ -176,7 +176,8 @@ function ReactFinancialChart({coin}) {
 					yAccessor={yEdgeIndicator}
 				/>
 
-				<MovingAverageTooltip
+				{/* legend for red and blue lines  */}
+				{/* <MovingAverageTooltip
 					origin={[8, 24]}
 					options={[
 						{
@@ -192,12 +193,17 @@ function ReactFinancialChart({coin}) {
 							windowSize: ema12.options().windowSize,
 						},
 					]}
-				/>
+				/> */}
 
 				{/* <ZoomButtons /> */}
 
 				{/* legend for opening high low close of where the cursor is */}
-				<OHLCTooltip origin={[8, 16]} textFill={openCloseColor} labelFill='white' fontSize={13} />
+				<OHLCTooltip
+					origin={[8, 16]}
+					textFill={openCloseColor}
+					labelFill="white"
+					fontSize={13}
+				/>
 			</Chart>
 
 			{/* elder ray chart shows bull bear power */}
@@ -211,7 +217,10 @@ function ReactFinancialChart({coin}) {
 				<XAxis showGridLines={false} gridLinesStrokeStyle="#e0e3eb" />
 				<YAxis ticks={4} tickFormat={pricesDisplayFormat} />
 
+				{/* time display on bottom where cursor is */}
 				<MouseCoordinateX displayFormat={timeDisplayFormat} />
+
+				{/* price display on the right where cursor is */}
 				<MouseCoordinateY
 					rectWidth={margin.right}
 					displayFormat={pricesDisplayFormat}
@@ -219,6 +228,7 @@ function ReactFinancialChart({coin}) {
 
 				<ElderRaySeries yAccessor={elder.accessor()} />
 
+				{/* Legend that says Elder ray */}
 				<SingleValueTooltip
 					yAccessor={elder.accessor()}
 					yLabel="Elder Ray"
