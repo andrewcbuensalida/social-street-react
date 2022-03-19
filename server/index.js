@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.get("/api/v1/markets", (req, res) => {
 	let response = null;
 	new Promise(async (resolve, reject) => {
 		try {
@@ -38,6 +38,8 @@ app.get("/", (req, res) => {
 		}
 	}).then((json) => res.json(json));
 });
+
+app.get('/api/v1/analysis/:id',)
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
