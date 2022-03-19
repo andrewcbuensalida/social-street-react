@@ -39,12 +39,45 @@ app.get("/api/v1/markets", (req, res) => {
 	}).then((json) => res.json(json));
 });
 
-app.get('/api/v1/analysis/:id',(req,res)=>{
-	console.log(`This is req.params.id`)
-	console.log(req.params.id)
-	
-	res.json({hello:'yeah'})
-})
+app.get("/api/v1/analysis/:symbol", async (req, res) => {
+	console.log(`This is req.params.id`);
+	console.log(req.params.symbol);
+
+	let response = null;
+	new Promise(async (resolve, reject) => {
+		console.log(`helllo`)
+		
+		const symbols = await axios.get(
+			`https://rest.coinapi.io/v1/symbols/`
+		);
+		console.log(`This is symbols`);
+		console.log(symbols.data);
+		try {
+			response = await axios.get(
+				`https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_${req.params.symbol}_USD/latest?period_id=1MIN&limit=5`,
+				{
+					headers: {
+						"X-CoinAPI-Key": process.env.coinApiKey,
+					},
+				}
+			);
+
+			//to get the icon url from coinapi
+		} catch (ex) {
+			response = null;
+			// error
+			reject(ex);
+		}
+		if (response) {
+			// console.log(`This is response`);
+			// console.log(response.data);
+
+			// success
+			const json = response.data;
+			resolve(json);
+		}
+	}).then((json) => res.json(json));
+});
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

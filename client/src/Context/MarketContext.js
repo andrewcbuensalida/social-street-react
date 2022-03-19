@@ -3,6 +3,7 @@ import axios from "axios";
 
 export const MarketContext = createContext();
 
+// this could actually just be in the Markets component
 export function MarketContextProvider({ children }) {
 	const [coins, setCoins] = useState([]);
 	const [pollCount, setPollCount] = useState(0);
@@ -12,6 +13,8 @@ export function MarketContextProvider({ children }) {
 			const response = await axios.get(
 				"http://localhost:4000/api/v1/markets"
 			);
+			console.log(`This is response.data.data`);
+			console.log(response.data.data);
 
 			setCoins(response.data.data);
 		}
@@ -19,7 +22,7 @@ export function MarketContextProvider({ children }) {
 		//polling instead of web sockets
 		setTimeout(
 			() => setPollCount((prevPollCount) => prevPollCount + 1),
-			5000
+			60000
 		);
 		// remove pollCount during development to prevent polling
 	}, []);

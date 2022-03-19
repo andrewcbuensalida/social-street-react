@@ -5,19 +5,19 @@ import axios from "axios";
 import "./Analysis.css";
 
 function Analysis() {
-	const [coin, setCoin] = useState(null);
-	const { id } = useParams();
+	const [ohlcvd, setOhlcvd] = useState([]);
+	const { symbol } = useParams();
 	console.log(`This is coins`);
 
 	useEffect(() => {
-		async function getCoin(id) {
-			const coin = await axios.get(`http://localhost:4000/api/v1/analysis/${id}`);
+		async function getCoin(symbol) {
+			const coin = await axios.get(`http://localhost:4000/api/v1/analysis/${symbol}`);
 			console.log(`This is coin`);
 			console.log(coin);
 		}
 
-		getCoin(id);
-	}, [id]);
+		getCoin(symbol);
+	}, [symbol]);
 
 	return (
 		<div>

@@ -13,7 +13,7 @@ function App() {
 				<Routes>
 					<Route path="/markets" element={<Markets />} />
 					<Route path="/" element={<Navigate to="/markets" />} />
-					<Route path="/analysis/:id" element={<Analysis />}/>
+					<Route path="/analysis/:symbol" element={<Analysis />}/>
 					<Route
 						path="*"
 						element={
