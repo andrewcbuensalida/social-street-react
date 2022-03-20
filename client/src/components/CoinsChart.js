@@ -8,10 +8,24 @@ function CoinsChart() {
 	const { coins } = useContext(MarketContext);
 
 	const options = {
+		axisX: {
+			labelFontColor: "white",
+		},
+		axisY: {
+			labelFontColor: "white",
+			labelFormatter: function (e) {
+				return (
+					"$" +
+					CanvasJS.formatNumber(e.value / 1000000000, "#,#00" + " B")
+				);
+			},
+			includeZero: false,
+		},
 		title: {
 			text: "Market Capitalization",
-            fontColor:'white',
-            fontFamily:'verdana'
+			fontColor: "white",
+			fontFamily: "verdana",
+			fontSize: 20,
 		},
 		data: [
 			{
@@ -22,7 +36,7 @@ function CoinsChart() {
 				})),
 			},
 		],
-        backgroundColor:null
+		backgroundColor: null,
 	};
 
 	return (

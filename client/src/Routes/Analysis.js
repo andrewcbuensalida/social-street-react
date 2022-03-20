@@ -18,9 +18,10 @@ function Analysis() {
 		getOhlcv(id);
 	}, [id]);
   
+  
 	return (
 		<div>
-			Analysis
+			{id.toUpperCase()}
 			<div className="Analysis_chart_container">
 				<ReactFinancialChart ohlcv={ohlcv}/>
 			</div>
