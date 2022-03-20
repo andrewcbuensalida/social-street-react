@@ -16,11 +16,11 @@ export function MarketContextProvider({ children }) {
 			setCoins(response.data);
 		}
 		getCrypto();
-		//polling instead of web sockets
-		setTimeout(
-			() => setPollCount((prevPollCount) => prevPollCount + 1),
-			60000
-		);
+		//polling instead of web sockets. Turn on during production
+		// setTimeout(
+		// 	() => setPollCount((prevPollCount) => prevPollCount + 1),
+		// 	60000
+		// );
 		// remove pollCount during development to prevent polling
 	}, []);
 
