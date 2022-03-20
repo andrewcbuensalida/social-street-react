@@ -7,8 +7,6 @@ export const MarketContext = createContext();
 export function MarketContextProvider({ children }) {
 	const [coins, setCoins] = useState([]);
 	const [pollCount, setPollCount] = useState(0);
-console.log(`This is coins`)
-console.log(coins)
 
 	useEffect(() => {
 		async function getCrypto() {

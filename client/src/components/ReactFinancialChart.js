@@ -30,9 +30,6 @@ import { initialData } from "./data";
 
 function ReactFinancialChart({ ohlcv }) {
 	const [formattedOhlcv, setFormattedOhlcv] = useState([{}]);
-
-    console.log(`This is formattedOhlcvd`)
-    console.log(formattedOhlcv)
     
 	useEffect(() => {
 		setFormattedOhlcv(

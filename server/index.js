@@ -12,7 +12,7 @@ app.get("/api/v1/markets", (req, res) => {
 	new Promise(async (resolve, reject) => {
 		try {
 			responseCoinGecko = await axios.get(
-				`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=2&price_change_percentage=24h&sparkline=true`
+				`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&price_change_percentage=24h&sparkline=true`
 			);
 
 			//to get the icon url from coinapi
@@ -42,9 +42,6 @@ app.get("/api/v1/analysis/:id", async (req, res) => {
 					},
 				}
 			);
-
-			console.log(`This is response`);
-			console.log(response.data);
 
 			//to get the icon url from coinapi
 		} catch (ex) {

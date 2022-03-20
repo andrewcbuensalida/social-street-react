@@ -9,7 +9,7 @@ function Analysis() {
 	const { id } = useParams();
 
 	useEffect(() => {
-		async function getOhlcv(id) {
+		async function getOhlcv(id) {     
 			const coin = await axios.get(`http://localhost:4000/api/v1/analysis/${id}`);
       
       setOhlcv(coin.data)
