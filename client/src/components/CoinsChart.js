@@ -1,37 +1,38 @@
-import {Component} from 'react'
+import { useContext } from "react";
 import CanvasJSReact from "../assets/canvasjs-3.4.13/canvasjs.react";
+import { MarketContext } from "../Context/MarketContext";
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-class CoinsChart extends Component {
-	render() {
-		const options = {
-			title: {
-				text: "Basic Column Chart in React",
-			},
-			data: [
-				{
-					type: "column",
-					dataPoints: [
-						{ label: "Apple", y: 10 },
-						{ label: "Orange", y: 15 },
-						{ label: "Banana", y: 25 },
-						{ label: "Mango", y: 30 },
-						{ label: "Grape", y: 28 },
-					],
-				},
-			],
-		};
+function CoinsChart() {
+	const { coins } = useContext(MarketContext);
 
-		return (
-			<div>
-				<CanvasJSChart
-					options={options}
-					/* onRef = {ref => this.chart = ref} */
-				/>
-			</div>
-		);
-	}
+	const options = {
+		title: {
+			text: "Market Capitalization",
+            fontColor:'white',
+            fontFamily:'verdana'
+		},
+		data: [
+			{
+				type: "column",
+				dataPoints: coins.map((coin) => ({
+					label: coin.name,
+					y: coin.market_cap,
+				})),
+			},
+		],
+        backgroundColor:null
+	};
+
+	return (
+		<div >
+			<CanvasJSChart
+				options={options}
+				// onRef={(ref) => (this.chart = ref)}
+			/>
+		</div>
+	);
 }
 
-export default CoinsChart
+export default CoinsChart;
