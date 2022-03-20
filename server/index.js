@@ -54,32 +54,39 @@ app.get("/api/v1/analysis/ohlc/:id", async (req, res) => {
 });
 
 app.get("/api/v1/analysis/orderbook/:symbol", async (req, res) => {
-	let responseOrderBook = null;
+	let responseOrderBook = { data: [] };
 	new Promise(async (resolve, reject) => {
 		try {
 			// to get order book data from coinapi
 			// match coingecko symbol from param with coinapis asset_id_base from file to get coinapis symbol
-			const { symbol_id } = symbols.find(
+			const relatedSymbols = symbols.filter(
 				(symbol) =>
-					symbol.asset_id_base === req.params.symbol.toUpperCase()
+					symbol.asset_id_base === req.params.symbol.toUpperCase() &&
+					symbol.symbol_type === "SPOT" && symbol.asset_id_quote==='USD'
 			);
 
-			console.log(`This is symbol_id`);
-			console.log(symbol_id);
+			// loop through relatedSymbols until you get a successful fetch because sometimes it doesn't work
 
-			// use coinapis symbol to get orderbook data/ limit_levels is max amount of levels from each side of book. This is data every second.
-			responseOrderBook = await axios.get(
-				`https://rest.coinapi.io/v1/orderbooks/${symbol_id}/latest?limit=5&limit_levels=2`,
-				{
-					headers: {
-						Origin: "https://google.com",
-						"Access-Control-Request-Headers": "",
-						"X-CoinAPI-Key": process.env.coinApiKey2,
-					},
-				}
-			);
-			console.log(`This is orderBook`);
-			console.log(responseOrderBook.data);
+			for (let i = relatedSymbols.length - 1; i >= 0; i--) {
+				console.log(`This is symbol_id`);
+				console.log(relatedSymbols[i].symbol_id);
+
+				// use coinapis symbol to get orderbook data/ limit_levels is max amount of levels from each side of book. This is data every second.
+				responseOrderBook = await axios.get(
+					`https://rest.coinapi.io/v1/orderbooks/${relatedSymbols[i].symbol_id}/latest?limit=6&limit_levels=4`,
+					{
+						headers: {
+							Origin: "https://google.com",
+							"Access-Control-Request-Headers": "",
+							"X-CoinAPI-Key": process.env.coinApiKey2,
+						},
+					}
+				);
+				console.log(`this is responseOrderBook.data`);
+				console.log(responseOrderBook.data);
+
+				if (responseOrderBook.data.length > 0) break;
+			}
 
 			//to get the icon url from coinapi
 		} catch (ex) {

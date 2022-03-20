@@ -62,6 +62,7 @@ responseCoinApi = await axios.get(
 trying to get orderbook from coinapi. first got the symbol from coingecko, searched the matching symbol id in a file I wrote from https://rest.coinapi.io/v1/symbols/, then used that symbol id to get orderbook from 
 https://rest.coinapi.io/v1/orderbooks/${symbol_id}/latest?limit=5&limit_levels=2
 but it takes like 4 seconds, and for some reason vs code is hanging. It might be because the symbols.js file is 150mb. Might also be the orderbooks endpoint is slow. From postman, it takes 3-7 seconds, also it fails sometimes. Might have to separate api calls. Strategy is finding the first symbol from the symbols.js that matches the asset id base, but sometimes this produces no order books when fetching. Might have to do a loop.
+The problem is, for btc at least, there are a lot of symbols that have no order book data, so it ends up looping and looping. The it will exceed concurrency limit.
 
 ======================================
 https://react-financial.github.io/react-financial-charts/?path=/docs/features-axis--y-axis
