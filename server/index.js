@@ -2,12 +2,15 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 require("dotenv").config();
+const symbols = require('./symbols')
 
 const app = express();
 
 app.use(cors());
 
 app.get("/api/v1/markets", (req, res) => {
+
+	
 	let responseCoinGecko = null;
 	new Promise(async (resolve, reject) => {
 		try {
@@ -29,8 +32,9 @@ app.get("/api/v1/markets", (req, res) => {
 	}).then((json) => res.json(json));
 });
 
-app.get("/api/v1/analysis/:id", async (req, res) => {
-
+app.get("/api/v1/analysis/:id/:symbol", async (req, res) => {
+	console.log(`This is test`);
+	console.log(symbols);
 	let response = null;
 	new Promise(async (resolve, reject) => {
 		try {
