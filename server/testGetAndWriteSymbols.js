@@ -3,22 +3,6 @@ const fs = require("fs");
 require("dotenv").config();
 
 async function getSymbols() {
-	// try {
-	// 	console.log(`getting symbols`);
-
-	// 	const symbols = await axios.get(`https://rest.coinapi.io/v1/symbols/`, {
-	// 		headers: {
-	// 			"X-CoinAPI-Key": process.env.coinApiKey,
-	// 		},
-	// 	});
-
-	// 	console.log(`This is symbols in getsymbols`);
-	// 	console.log(symbols.data);
-
-	// 	return symbols.data;
-	// } catch (e) {
-	// 	console.log(e);
-	// }
 
 	try {
 		console.log(`getting symbols`);

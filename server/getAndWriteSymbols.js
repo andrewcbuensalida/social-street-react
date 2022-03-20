@@ -45,7 +45,7 @@ async function getAndWriteSymbols() {
 	setInterval(async () => {
 		const symbols = await getSymbols();
 		writeSymbols(symbols);
-	}, 30000);
+	}, timeInterval);
 }
 
 getAndWriteSymbols();
