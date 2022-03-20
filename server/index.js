@@ -30,9 +30,8 @@ app.get("/api/v1/markets", (req, res) => {
 	}).then((json) => res.json(json));
 });
 
-app.get("/api/v1/analysis/:id/:symbol", async (req, res) => {
+app.get("/api/v1/analysis/ohlc/:id", async (req, res) => {
 	let responseOhlc = null;
-	let responseOrderBook = null;
 	new Promise(async (resolve, reject) => {
 		try {
 			// to get ohlc data from coingecko
@@ -40,6 +39,24 @@ app.get("/api/v1/analysis/:id/:symbol", async (req, res) => {
 				`https://api.coingecko.com/api/v3/coins/${req.params.id}/ohlc?vs_currency=usd&days=30`
 			);
 
+			//to get the icon url from coinapi
+		} catch (ex) {
+			responseOhlc = null;
+			// error
+			reject(ex);
+		}
+		if (responseOhlc) {
+			// success
+			const json = responseOhlc.data;
+			resolve(json);
+		}
+	}).then((json) => res.json(json));
+});
+
+app.get("/api/v1/analysis/orderbook/:symbol", async (req, res) => {
+	let responseOrderBook = null;
+	new Promise(async (resolve, reject) => {
+		try {
 			// to get order book data from coinapi
 			// match coingecko symbol from param with coinapis asset_id_base from file to get coinapis symbol
 			const { symbol_id } = symbols.find(
@@ -54,9 +71,9 @@ app.get("/api/v1/analysis/:id/:symbol", async (req, res) => {
 			responseOrderBook = await axios.get(
 				`https://rest.coinapi.io/v1/orderbooks/${symbol_id}/latest?limit=5&limit_levels=2`,
 				{
-					headers: { 
-						'Origin': 'https://google.com', 
-    					'Access-Control-Request-Headers': '', 
+					headers: {
+						Origin: "https://google.com",
+						"Access-Control-Request-Headers": "",
 						"X-CoinAPI-Key": process.env.coinApiKey2,
 					},
 				}
@@ -66,17 +83,13 @@ app.get("/api/v1/analysis/:id/:symbol", async (req, res) => {
 
 			//to get the icon url from coinapi
 		} catch (ex) {
-			responseOhlc = null;
 			responseOrderBook = null;
 			// error
 			reject(ex);
 		}
-		if (responseOhlc && responseOrderBook) {
+		if (responseOrderBook) {
 			// success
-			const json = {
-				ohlc: responseOhlc.data,
-				orderBook: responseOrderBook.data,
-			};
+			const json = responseOrderBook.data;
 			resolve(json);
 		}
 	}).then((json) => res.json(json));

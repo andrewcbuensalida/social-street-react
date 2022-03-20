@@ -12,16 +12,22 @@ function Analysis() {
 	useEffect(() => {
 		async function getOhlcv(id) {
 			const response = await axios.get(
-				`http://localhost:4000/api/v1/analysis/${id}/${symbol}`
+				`http://localhost:4000/api/v1/analysis/ohlc/${id}`
 			);
-			setOrderBook(response.data.orderBook);
-			setOhlcv(response.data.ohlc);
+			setOhlcv(response.data);
 		}
 
+		async function getOrderBook(symbol) {
+			const response = await axios.get(
+				`http://localhost:4000/api/v1/analysis/orderbook/${symbol}`
+			);
+			setOrderBook(response.data);
+		}
 		getOhlcv(id);
-	}, [id]);
-console.log(`This is orderBook`)
-console.log(orderBook)
+		getOrderBook(symbol);
+	}, [id, symbol]);
+	console.log(`This is orderBook`);
+	console.log(orderBook);
 
 	return (
 		<div>
