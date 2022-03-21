@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";
 import {
+	Label,
 	elderRay,
 	ema,
 	discontinuousTimeScaleProviderBuilder,
@@ -28,7 +29,7 @@ import {
 } from "react-financial-charts";
 import { initialData } from "./data";
 
-function ReactFinancialChart({ ohlcv }) {
+function ReactFinancialChart({ ohlcv,symbol }) {
 	const [formattedOhlcv, setFormattedOhlcv] = useState([{}]);
     
 	useEffect(() => {
@@ -49,8 +50,8 @@ function ReactFinancialChart({ ohlcv }) {
 		discontinuousTimeScaleProviderBuilder().inputDateAccessor(
 			(d) => new Date(d.date)
 		);
-	const height = 400;
-	const width = 500;
+	const height = 500;
+	const width = 600;
 	const margin = { left: 0, right: 48, top: 0, bottom: 24 };
 
 	const ema12 = ema()
@@ -135,6 +136,12 @@ function ReactFinancialChart({ ohlcv }) {
 			xExtents={xExtents}
 			zoomAnchor={lastVisibleItemBasedZoomAnchor}
 		>
+			<Label
+				x={30}
+				y={20}
+				fontSize="20"
+				text={symbol.toUpperCase()}
+			/>
 			{/* total volume traded */}
 			<Chart
 				id={2}
@@ -146,7 +153,7 @@ function ReactFinancialChart({ ohlcv }) {
 			</Chart>
 
 			{/* main */}
-			<Chart id={3} height={chartHeight} yExtents={candleChartExtents}>
+			<Chart id={3} height={chartHeight-30} yExtents={candleChartExtents} origin={[0,30]} >
 				<XAxis
 					showGridLines={false}
 					showTickLabel={false}
@@ -162,28 +169,28 @@ function ReactFinancialChart({ ohlcv }) {
 				<CandlestickSeries />
 
 				{/* blue line */}
-				{/* <LineSeries
+				<LineSeries
 					yAccessor={ema26.accessor()}
 					strokeStyle={ema26.stroke()}
-				/> */}
+				/>
 
 				{/* dot on blue line */}
-				{/* <CurrentCoordinate
+				<CurrentCoordinate
 					yAccessor={ema26.accessor()}
 					fillStyle={ema26.stroke()}
-				/> */}
+				/>
 
 				{/* red line */}
-				{/* <LineSeries
+				<LineSeries
 					yAccessor={ema12.accessor()}
 					strokeStyle={ema12.stroke()}
-				/> */}
+				/>
 
 				{/* dot on red line */}
-				{/* <CurrentCoordinate
+				<CurrentCoordinate
 					yAccessor={ema12.accessor()}
 					fillStyle={ema12.stroke()}
-				/> */}
+				/>
 
 				<MouseCoordinateY
 					rectWidth={margin.right}
@@ -223,7 +230,7 @@ function ReactFinancialChart({ ohlcv }) {
 
 				{/* legend for opening high low close of where the cursor is */}
 				<OHLCTooltip
-					origin={[8, 16]}
+					origin={[80, -10]}
 					textFill={openCloseColor}
 					labelFill="white"
 					fontSize={13}

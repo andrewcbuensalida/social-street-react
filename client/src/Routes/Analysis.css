@@ -1,6 +1,26 @@
-.Analysis_chart_container{
-    /* max-width: 500px;
-    max-height: 400px; */
-    /* background-color: aliceblue; */
-    /* overflow: hidden; */
+.Analysis_container {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+    gap: 5px;
+}
+
+.Analysis_container > * {
+    background-color: rgba(56, 63, 63, 0.2);
+    padding: 5px;
+}
+
+.Analysis_chart_container {
+	grid-column: 1/9;
+}
+
+.Analysis_sideinfo_container {
+	grid-column: 9/-1;
+}
+
+.Analysis_buysell_container {
+	grid-column: 1/7;
+}
+
+.Analysis_orderbook_container {
+	grid-column: 7/-1;
 }

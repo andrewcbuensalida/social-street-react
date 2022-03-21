@@ -59,34 +59,29 @@ app.get("/api/v1/analysis/orderbook/:symbol", async (req, res) => {
 		try {
 			// to get order book data from coinapi
 			// match coingecko symbol from param with coinapis asset_id_base from file to get coinapis symbol
-			const relatedSymbols = symbols.filter(
+			const { symbol_id } = symbols.find(
 				(symbol) =>
 					symbol.asset_id_base === req.params.symbol.toUpperCase() &&
-					symbol.symbol_type === "SPOT" && symbol.asset_id_quote==='USD'
+					symbol.symbol_type === "SPOT" &&
+					symbol.asset_id_quote === "USD"
 			);
 
-			// loop through relatedSymbols until you get a successful fetch because sometimes it doesn't work
+			console.log(`This is symbol_id`);
+			console.log(symbol_id);
 
-			for (let i = relatedSymbols.length - 1; i >= 0; i--) {
-				console.log(`This is symbol_id`);
-				console.log(relatedSymbols[i].symbol_id);
-
-				// use coinapis symbol to get orderbook data/ limit_levels is max amount of levels from each side of book. This is data every second.
-				responseOrderBook = await axios.get(
-					`https://rest.coinapi.io/v1/orderbooks/${relatedSymbols[i].symbol_id}/latest?limit=6&limit_levels=4`,
-					{
-						headers: {
-							Origin: "https://google.com",
-							"Access-Control-Request-Headers": "",
-							"X-CoinAPI-Key": process.env.coinApiKey2,
-						},
-					}
-				);
-				console.log(`this is responseOrderBook.data`);
-				console.log(responseOrderBook.data);
-
-				if (responseOrderBook.data.length > 0) break;
-			}
+			// use coinapis symbol to get orderbook data/ limit_levels is max amount of levels from each side of book. This is data every second.
+			responseOrderBook = await axios.get(
+				`https://rest.coinapi.io/v1/orderbooks/${symbol_id}/latest?limit=6&limit_levels=4`,
+				{
+					headers: {
+						Origin: "https://google.com",
+						"Access-Control-Request-Headers": "",
+						"X-CoinAPI-Key": process.env.coinApiKey2,
+					},
+				}
+			);
+			console.log(`this is responseOrderBook.data`);
+			console.log(responseOrderBook.data);
 
 			//to get the icon url from coinapi
 		} catch (ex) {

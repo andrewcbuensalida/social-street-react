@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom";
 import ReactFinancialChart from "../components/ReactFinancialChart";
 import axios from "axios";
 import "./Analysis.css";
+import OrderBook from "../components/OrderBook";
+import BuySell from "../components/BuySell";
+import SideInfo from "../components/SideInfo";
 
 function Analysis() {
 	const [ohlcv, setOhlcv] = useState([{}]);
 	const [orderBook, setOrderBook] = useState([{}]);
-	const { id, symbol } = useParams();
+	const { id, symbol } = useParams(); //id=bitcoin  symbol=btc
 
 	useEffect(() => {
 		async function getOhlcv(id) {
@@ -24,16 +27,25 @@ function Analysis() {
 			setOrderBook(response.data);
 		}
 		getOhlcv(id);
-		getOrderBook(symbol);
+		// just get it from websocket wss://ws.bitstamp.net in OrderBook.js
+		// getOrderBook(symbol);
 	}, [id, symbol]);
 	console.log(`This is orderBook`);
 	console.log(orderBook);
 
 	return (
-		<div>
-			{id.toUpperCase()}
+		<div className="Analysis_container">
 			<div className="Analysis_chart_container">
-				<ReactFinancialChart ohlcv={ohlcv} />
+				<ReactFinancialChart ohlcv={ohlcv} symbol={symbol} />
+			</div>
+			<div className="Analysis_sideinfo_container">
+				<SideInfo />
+			</div>
+			<div className="Analysis_buysell_container">
+				<BuySell />
+			</div>
+			<div className="Analysis_orderbook_container">
+				<OrderBook symbol={symbol} />
 			</div>
 		</div>
 	);
