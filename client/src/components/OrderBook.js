@@ -34,8 +34,6 @@ const OrderBook = ({ symbol }) => {
 
 	const { bids, asks } = orders;
 	const minOfBidsAndAsks = Math.min(bids?.length, asks?.length, 25);
-	console.log(`This is bids`);
-	console.log(bids);
 
 	function addTotal(bidsOrAsks) {
 		let total = 0;
@@ -46,13 +44,34 @@ const OrderBook = ({ symbol }) => {
 				total: total,
 				price: parseFloat(bidsOrAsks[0]),
 				size: parseFloat(bidsOrAsks[1]),
-				id: "" + bidsOrAsks[0] + bidsOrAsks[1],
+				id: bidsOrAsks[0] + bidsOrAsks[1] + "",
 			};
 		});
 	}
 
 	const bidsWithTotal = addTotal(bids);
 	const asksWithTotal = addTotal(asks);
+
+	function addPercent(tot1, tot2) {   
+		return (
+			parseFloat(tot1) /
+			(parseFloat(tot1) + parseFloat(tot2))
+		);
+	}
+
+	for (let i = 0; i < minOfBidsAndAsks; i++) {
+		bidsWithTotal[i].percent = addPercent(
+			bidsWithTotal[i].total,
+			asksWithTotal[i].total
+		);
+		asksWithTotal[i].percent = addPercent(
+			asksWithTotal[i].total,
+			bidsWithTotal[i].total
+		);
+	}
+
+	console.log(`This is bidsWithTotal`);
+	console.log(bidsWithTotal);
 
 	const orderRows = (arr, type) =>
 		arr &&
