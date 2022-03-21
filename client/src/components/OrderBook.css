@@ -20,18 +20,32 @@ th {
 	padding: 6px;
 }
 
-@keyframes enter {
-	from {
-		background-color: transparent;
-	}
-	to {
-		background-color: rgba(102, 170, 0, 0.685);
-	}
-}
-
 .OrderBook_row {
 	border-bottom: 1px solid rgba(136, 136, 136, 0.493);
 	font-weight: 400;
-	animation-name: enter;
-	animation-duration: .2s;
+	animation-duration: 0.7s;
+}
+@keyframes bidsEnter {
+	from {
+		background-color: rgba(1, 151, 101, 0.466);
+	}
+	to {
+		background-color: transparent;
+	}
+}
+
+.OrderBook_row_bids {
+	animation-name: bidsEnter;
+}
+
+@keyframes asksEnter {
+	from {
+		background-color: rgba(170, 0, 0, 0.521);
+	}
+	to {
+		background-color: transparent;
+	}
+}
+.OrderBook_row_asks {
+	animation-name: asksEnter;
 }

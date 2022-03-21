@@ -33,20 +33,39 @@ const OrderBook = ({ symbol }) => {
 	}, [currencyPair]);
 
 	const { bids, asks } = orders;
-    const minOfBidsAndAsks = Math.min(bids?.length,asks?.length)
-    console.log(`This is bids`)
-    console.log(bids)
-    
-    
-	const orderRows = (arr) =>
+	const minOfBidsAndAsks = Math.min(bids?.length, asks?.length, 25);
+	console.log(`This is bids`);
+	console.log(bids);
+
+	function addTotal(bidsOrAsks) {
+		let total = 0;
+		return bidsOrAsks?.map((bidsOrAsks, index) => {
+			total += parseFloat(bidsOrAsks[1]);
+
+			return {
+				total: total,
+				price: parseFloat(bidsOrAsks[0]),
+				size: parseFloat(bidsOrAsks[1]),
+				id: "" + bidsOrAsks[0] + bidsOrAsks[1],
+			};
+		});
+	}
+
+	const bidsWithTotal = addTotal(bids);
+	const asksWithTotal = addTotal(asks);
+
+	const orderRows = (arr, type) =>
 		arr &&
 		arr.map(
 			(item, index) =>
 				// have to limit asks and bids to min because sometimes it's not even and the cells arent aligned
 				index < minOfBidsAndAsks && (
-					<tr className="OrderBook_row" key={item[1]+item[0]+index}>
-						<td> {item[1]} </td>
-						<td> {item[0]} </td>
+					<tr
+						className={`OrderBook_row OrderBook_row_${type}`}
+						key={item.id}
+					>
+						<td> {item.size} </td>
+						<td> {item.price} </td>
 					</tr>
 				)
 		);
@@ -56,22 +75,22 @@ const OrderBook = ({ symbol }) => {
 				<th colSpan="2">{title}</th>
 			</tr>
 			<tr>
-				<th>Amount ({currencyArray[0]})</th>
+				<th>Size ({currencyArray[0]})</th>
 				<th>Price ({currencyArray[1]})</th>
 			</tr>
 		</thead>
 	);
 	return (
 		<div className="OrderBook_container">
-            <div className="OrderBook_title">Order book</div>
+			<div className="OrderBook_title">Order book</div>
 			<table>
 				{orderHead("Bids")}
-				<tbody>{orderRows(bids)}</tbody>
+				<tbody>{orderRows(bidsWithTotal, "bids")}</tbody>
 			</table>
 
 			<table>
 				{orderHead("Asks")}
-				<tbody>{orderRows(asks)}</tbody>
+				<tbody>{orderRows(asksWithTotal, "asks")}</tbody>
 			</table>
 		</div>
 	);
