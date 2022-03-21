@@ -53,25 +53,25 @@ const OrderBook = ({ symbol }) => {
 	}
 
 	// adding total of bids and asks
-
 	const bidsWithTotal = addTotal(bids);
 	const asksWithTotal = addTotal(asks);
 
+	// this is the total of both sides together
 	const bidsAndAsksTotal =
-		bidsWithTotal[24]?.total || 0 + asksWithTotal[24]?.total || 0;
+		(bidsWithTotal[minOfBidsAndAsks]?.total || 0) +
+		(asksWithTotal[minOfBidsAndAsks]?.total || 0);
 
-	// adding percent
+	// adding percent. Not sure if it should be over bidsAndAsksTotal, or the total just for one side
 	for (let i = 0; i < minOfBidsAndAsks; i++) {
-		bidsWithTotal[i].percent = bidsWithTotal[i].total / bidsAndAsksTotal;
-		asksWithTotal[i].percent = asksWithTotal[i].total / bidsAndAsksTotal;
+		bidsWithTotal[i].percent =
+			bidsWithTotal[i].total / bidsWithTotal[minOfBidsAndAsks - 1].total;
+		asksWithTotal[i].percent =
+			asksWithTotal[i].total / asksWithTotal[minOfBidsAndAsks - 1].total;
 	}
 
 	const orderRows = (arr, type) =>
 		arr &&
 		arr.map((item, index) => {
-			console.log(`This is item.percent`);
-			console.log(item.percent * 100, index);
-
 			// have to limit asks and bids to min because sometimes it's not even and the cells arent aligned
 			return (
 				index < minOfBidsAndAsks && (
@@ -80,19 +80,13 @@ const OrderBook = ({ symbol }) => {
 						key={item.id}
 						style={{
 							background: `rgb(255,255,255)`,
-							background: `linear-gradient(90deg, rgba(200,${
-								type === "bids" ? 255 : 30
-							},${type === "bids" ? 255 : 30},${
+							background: `linear-gradient(90deg, rgba(255,0,0,${
 								type === "bids" ? 0 : 0.3
 							}) ${
 								(type === "bids"
 									? 1 - item.percent
 									: item.percent) * 100
-							}%, rgba(${type === "bids" ? 30 : 255},${
-								type === "bids" ? 200 : 255
-							},${type === "bids" ? 30 : 255},${
-								type === "bids" ? 0.3 : 0
-							})  ${
+							}%, rgba(0,255,0,${type === "bids" ? 0.2 : 0})  ${
 								(type === "bids"
 									? 1 - item.percent
 									: item.percent) * 100
