@@ -30,8 +30,6 @@ function Analysis() {
 		// just get it from websocket wss://ws.bitstamp.net in OrderBook.js
 		// getOrderBook(symbol);
 	}, [id, symbol]);
-	console.log(`This is orderBook`);
-	console.log(orderBook);
 
 	return (
 		<div className="Analysis_container">

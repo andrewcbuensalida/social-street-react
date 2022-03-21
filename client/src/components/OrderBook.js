@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import './OrderBook.css'
+import "./OrderBook.css";
 
-const OrderBook = ({symbol}) => {
+const OrderBook = ({ symbol }) => {
 	const [orders, setOrders] = useState([]);
 	const currencyPair = `${symbol}usd`;
 
@@ -33,14 +33,20 @@ const OrderBook = ({symbol}) => {
 	}, [currencyPair]);
 
 	const { bids, asks } = orders;
+    const minOfBidsAndAsks = Math.min(bids?.length,asks?.length)
+    
 	const orderRows = (arr) =>
 		arr &&
-		arr.map((item, index) => (
-			<tr key={index}>
-				<td> {item[1]} </td>
-				<td> {item[0]} </td>
-			</tr>
-		));
+		arr.map(
+			(item, index) =>
+				// have to limit asks and bids to min because sometimes it's not even and the cells arent aligned
+				index < minOfBidsAndAsks && (
+					<tr key={index}>
+						<td> {item[1]} </td>
+						<td> {item[0]} </td>
+					</tr>
+				)
+		);
 	const orderHead = (title) => (
 		<thead>
 			<tr>
@@ -54,6 +60,7 @@ const OrderBook = ({symbol}) => {
 	);
 	return (
 		<div className="OrderBook_container">
+            <div className="OrderBook_title">Order book</div>
 			<table>
 				{orderHead("Bids")}
 				<tbody>{orderRows(bids)}</tbody>

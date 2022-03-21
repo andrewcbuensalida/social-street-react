@@ -1,24 +1,29 @@
 .OrderBook_container {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
+}
+
+.OrderBook_title{
+   width: 100%;
+   text-align: center;
+   font-weight: 700;
 }
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 50%;
   text-align: center;
 }
-h1,
-h2 {
-  text-align: center;
-}
+
 td,
 th {
+    font-weight: 400;
   padding: 6px;
 }
-tr:nth-child(even) {
-  background-color: #353535;
+tr {
+  border-bottom: 1px solid rgba(136, 136, 136, 0.493);
 }
 
 tr:hover {
-  background-color: rgb(87, 86, 86);
+  filter: brightness(150%);
 }

@@ -1,12 +1,12 @@
 .Analysis_container {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-    gap: 5px;
+	gap: 7px;
 }
 
 .Analysis_container > * {
-    background-color: rgba(56, 63, 63, 0.2);
-    padding: 5px;
+	background-color: rgba(56, 63, 63, 0.2);
+	padding: 5px;
 }
 
 .Analysis_chart_container {
@@ -21,6 +21,22 @@
 	grid-column: 1/7;
 }
 
+.Analysis_orderbook_container::-webkit-scrollbar{
+    width: 5px;
+}
+
+.Analysis_orderbook_container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.Analysis_orderbook_container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
 .Analysis_orderbook_container {
 	grid-column: 7/-1;
+	max-height: 500px;
+	overflow: scroll;
+	scrollbar-width: none;
+	-ms-overflow-style: none; /* IE and Edge */
 }

@@ -28,6 +28,7 @@ import {
 	withSize,
 } from "react-financial-charts";
 import { initialData } from "./data";
+import './ReactFinancialChart.css'
 
 function ReactFinancialChart({ ohlcv,symbol }) {
 	const [formattedOhlcv, setFormattedOhlcv] = useState([{}]);

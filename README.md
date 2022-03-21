@@ -1,3 +1,13 @@
+TODO:
+	1. dynamically size candlestick
+	2. toolbar of candlestick
+	3. stop zooming out when it's too far candlestick
+	4. add other charts with candlestick
+	5. buy sell
+	6. side info
+
+
+=======================================
 Trying to clone https://ftx.us/markets
 
 ======================================
