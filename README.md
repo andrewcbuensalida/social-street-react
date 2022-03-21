@@ -6,7 +6,8 @@ TODO:
 	5. buy sell
 	6. side info
 
-
+========================================
+the bar in the order book in ftx is the accumulation of the bid sizes above a number.
 =======================================
 Trying to clone https://ftx.us/markets
 

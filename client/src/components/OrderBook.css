@@ -1,29 +1,37 @@
 .OrderBook_container {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
 }
 
-.OrderBook_title{
-   width: 100%;
-   text-align: center;
-   font-weight: 700;
+.OrderBook_title {
+	width: 100%;
+	text-align: center;
+	font-weight: 700;
 }
 table {
-  border-collapse: collapse;
-  width: 50%;
-  text-align: center;
+	border-collapse: collapse;
+	width: 50%;
+	text-align: center;
 }
 
 td,
 th {
-    font-weight: 400;
-  padding: 6px;
-}
-tr {
-  border-bottom: 1px solid rgba(136, 136, 136, 0.493);
+	padding: 6px;
 }
 
-tr:hover {
-  filter: brightness(150%);
+@keyframes enter {
+	from {
+		background-color: transparent;
+	}
+	to {
+		background-color: rgba(102, 170, 0, 0.685);
+	}
+}
+
+.OrderBook_row {
+	border-bottom: 1px solid rgba(136, 136, 136, 0.493);
+	font-weight: 400;
+	animation-name: enter;
+	animation-duration: .2s;
 }

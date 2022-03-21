@@ -34,6 +34,9 @@ const OrderBook = ({ symbol }) => {
 
 	const { bids, asks } = orders;
     const minOfBidsAndAsks = Math.min(bids?.length,asks?.length)
+    console.log(`This is bids`)
+    console.log(bids)
+    
     
 	const orderRows = (arr) =>
 		arr &&
@@ -41,7 +44,7 @@ const OrderBook = ({ symbol }) => {
 			(item, index) =>
 				// have to limit asks and bids to min because sometimes it's not even and the cells arent aligned
 				index < minOfBidsAndAsks && (
-					<tr key={index}>
+					<tr className="OrderBook_row" key={item[1]+item[0]+index}>
 						<td> {item[1]} </td>
 						<td> {item[0]} </td>
 					</tr>
