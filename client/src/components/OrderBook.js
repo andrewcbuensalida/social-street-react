@@ -52,11 +52,8 @@ const OrderBook = ({ symbol }) => {
 	const bidsWithTotal = addTotal(bids);
 	const asksWithTotal = addTotal(asks);
 
-	function addPercent(tot1, tot2) {   
-		return (
-			parseFloat(tot1) /
-			(parseFloat(tot1) + parseFloat(tot2))
-		);
+	function addPercent(tot1, tot2) {
+		return parseFloat(tot1) / (parseFloat(tot1) + parseFloat(tot2));
 	}
 
 	for (let i = 0; i < minOfBidsAndAsks; i++) {
@@ -70,9 +67,6 @@ const OrderBook = ({ symbol }) => {
 		);
 	}
 
-	console.log(`This is bidsWithTotal`);
-	console.log(bidsWithTotal);
-
 	const orderRows = (arr, type) =>
 		arr &&
 		arr.map(
@@ -82,6 +76,12 @@ const OrderBook = ({ symbol }) => {
 					<tr
 						className={`OrderBook_row OrderBook_row_${type}`}
 						key={item.id}
+						style={{
+							background: `rgb(255,255,255)`,
+							background: `linear-gradient(90deg, rgba(255,255,255,0) ${
+								item.percent * 100
+							}%, #0064024f  ${item.percent * 100}%)`,
+						}}
 					>
 						<td> {item.size} </td>
 						<td> {item.price} </td>
