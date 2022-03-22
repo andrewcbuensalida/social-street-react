@@ -4,8 +4,6 @@ import CurrencyFormat from "react-currency-format";
 import "./SideInfo.css";
 
 function SideInfo({ coin }) {
-	console.log(`This is coin`);
-	console.log(coin);
 
 	return coin ? (
 		<div>

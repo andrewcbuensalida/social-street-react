@@ -1,0 +1,21 @@
+.BuySell_selector_container {
+	display: flex;
+	justify-content: space-around;
+}
+
+.MuiButton-root.BuySell_selector {
+	width: 100%;
+    color: var(--grey-color);
+}
+
+.BuySell_selector.buy {
+    color: var(--primary-color);
+	border-bottom: 1px solid var(--primary-color);
+    border-radius: 0%;
+}
+
+.BuySell_selector.sell {
+    color: var(--red-color);
+	border-bottom: 1px solid var(--red-color);
+    border-radius: 0%;
+}
