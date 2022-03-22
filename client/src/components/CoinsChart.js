@@ -5,7 +5,7 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function CoinsChart() {
-	const { coins } = useContext(MarketContext);
+	const { filteredCoins } = useContext(MarketContext);
 
 	const options = {
 		axisX: {
@@ -30,7 +30,7 @@ function CoinsChart() {
 		data: [
 			{
 				type: "column",
-				dataPoints: coins.map((coin) => ({
+				dataPoints: filteredCoins.map((coin) => ({
 					label: coin.name,
 					y: coin.market_cap,
 				})),

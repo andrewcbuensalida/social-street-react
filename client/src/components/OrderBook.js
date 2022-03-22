@@ -63,10 +63,8 @@ const OrderBook = ({ symbol }) => {
 
 	// adding percent. Not sure if it should be over bidsAndAsksTotal, or the total just for one side
 	for (let i = 0; i < minOfBidsAndAsks; i++) {
-		bidsWithTotal[i].percent =
-			bidsWithTotal[i].total / bidsWithTotal[minOfBidsAndAsks - 1].total;
-		asksWithTotal[i].percent =
-			asksWithTotal[i].total / asksWithTotal[minOfBidsAndAsks - 1].total;
+		bidsWithTotal[i].percent = bidsWithTotal[i].total / bidsAndAsksTotal;
+		asksWithTotal[i].percent = asksWithTotal[i].total / bidsAndAsksTotal;
 	}
 
 	const orderRows = (arr, type) =>
@@ -79,7 +77,6 @@ const OrderBook = ({ symbol }) => {
 						className={`OrderBook_row OrderBook_row_${type}`}
 						key={item.id}
 						style={{
-							background: `rgb(255,255,255)`,
 							background: `linear-gradient(90deg, rgba(255,0,0,${
 								type === "bids" ? 0 : 0.3
 							}) ${

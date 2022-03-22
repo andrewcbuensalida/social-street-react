@@ -9,26 +9,16 @@ import SideInfo from "../components/SideInfo";
 
 function Analysis() {
 	const [ohlcv, setOhlcv] = useState([{}]);
-	const [orderBook, setOrderBook] = useState([{}]);
 	const { id, symbol } = useParams(); //id=bitcoin  symbol=btc
 
 	useEffect(() => {
 		async function getOhlcv(id) {
 			const response = await axios.get(
-				`http://localhost:4000/api/v1/analysis/ohlc/${id}`
+				`http://localhost:4000/api/v1/analysis/ohlc/${id}/usd`
 			);
 			setOhlcv(response.data);
 		}
-
-		async function getOrderBook(symbol) {
-			const response = await axios.get(
-				`http://localhost:4000/api/v1/analysis/orderbook/${symbol}`
-			);
-			setOrderBook(response.data);
-		}
 		getOhlcv(id);
-		// just get it from websocket wss://ws.bitstamp.net in OrderBook.js
-		// getOrderBook(symbol);
 	}, [id, symbol]);
 
 	return (

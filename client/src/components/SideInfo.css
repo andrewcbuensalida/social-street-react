@@ -1,0 +1,23 @@
+.SideInfo_row {
+	color: var(--grey-color);
+	padding: 0.2em;
+	display: flex;
+	justify-content: space-between;
+}
+
+.SideInfo_row:nth-child(4) {
+	border-bottom: 1px solid var(--grey-color);
+}
+
+.SideInfo_content {
+	color: white;
+}
+
+.SideInfo_content.green{
+    color:var(--primary-color)
+}
+
+.SideInfo_content.red{
+    color:var(--red-color)
+
+}

@@ -4,7 +4,7 @@ import "./CoinsList.css";
 import { MarketContext } from "../Context/MarketContext";
 
 function CoinsList() {
-	const { coins } = useContext(MarketContext);
+	const { filteredCoins } = useContext(MarketContext);
 
 	return (
 		<div>
@@ -16,8 +16,8 @@ function CoinsList() {
 				<div>Price</div>
 				<div>Daily Change</div>
 			</div>
-			{coins.map((coin) => (
-				<CoinRow key={coin.id} coin={coin} />
+			{filteredCoins.map((coin) => (
+				<CoinRow key={coin.id+coin.vsCurrency} coin={coin} />
 			))}
 		</div>
 	);

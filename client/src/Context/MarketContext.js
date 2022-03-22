@@ -7,6 +7,26 @@ export const MarketContext = createContext();
 export function MarketContextProvider({ children }) {
 	const [coins, setCoins] = useState([]);
 	const [pollCount, setPollCount] = useState(0);
+	const [filteredCoins, setFilteredCoins] = useState(coins);
+	const [selectedVsCurrencies, setSelectedVsCurrencies] = useState([
+		"usd",
+		"eur",
+	]);
+	const [selectedOrderBy, setSelectedOrderBy] = ["market_cap"];
+
+	useEffect(() => {
+		let newFilteredCoins = [];
+		for (let i = 0; i < selectedVsCurrencies.length; i++) {
+			newFilteredCoins = [
+				...newFilteredCoins,
+				...coins.filter(
+					(coin) => coin.vsCurrency === selectedVsCurrencies[i]
+				),
+			];
+		}
+		newFilteredCoins.sort((a, b) => b.market_cap - a.market_cap);
+		setFilteredCoins(newFilteredCoins);
+	}, [coins, selectedVsCurrencies]);
 
 	useEffect(() => {
 		async function getCrypto() {
@@ -25,7 +45,7 @@ export function MarketContextProvider({ children }) {
 	}, []);
 
 	return (
-		<MarketContext.Provider value={{ coins, setCoins }}>
+		<MarketContext.Provider value={{ filteredCoins }}>
 			{children}
 		</MarketContext.Provider>
 	);
