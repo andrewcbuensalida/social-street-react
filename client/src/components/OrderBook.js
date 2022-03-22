@@ -123,7 +123,7 @@ const OrderBook = ({ symbol, vsCurrency }) => {
 	const orderHead = (title) => (
 		<thead>
 			<tr>
-				<th colSpan="2">{title}</th>
+				<th colSpan="2" className="OrderBook_subtitle">{title}</th>
 			</tr>
 			<tr>
 				<th>Size ({currencyArray[0]})</th>

@@ -31,7 +31,11 @@ function Analysis() {
 	return (
 		<div className="Analysis_container">
 			<div className="Analysis_chart_container">
-				<ReactFinancialChart ohlcv={ohlcv} symbol={coin?.symbol} />
+				<ReactFinancialChart
+					ohlcv={ohlcv}
+					symbol={coin?.symbol}
+					vsCurrency={coin?.vsCurrency}
+				/>
 			</div>
 			<div className="Analysis_sideinfo_container">
 				<SideInfo coin={coin} />

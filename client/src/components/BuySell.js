@@ -2,7 +2,7 @@ import React from 'react'
 
 function BuySell() {
   return (
-    <div>BuySell</div>
+    <div></div>
   )
 }
 

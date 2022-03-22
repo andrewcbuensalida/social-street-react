@@ -30,7 +30,7 @@ import {
 import { initialData } from "./data";
 import "./ReactFinancialChart.css";
 
-function ReactFinancialChart({ ohlcv, symbol='N/A' }) {
+function ReactFinancialChart({ ohlcv, symbol = "N/A", vsCurrency }) {
 	const [formattedOhlcv, setFormattedOhlcv] = useState([{}]);
 
 	useEffect(() => {
@@ -137,7 +137,12 @@ function ReactFinancialChart({ ohlcv, symbol='N/A' }) {
 			xExtents={xExtents}
 			zoomAnchor={lastVisibleItemBasedZoomAnchor}
 		>
-			<Label x={30} y={20} fontSize="20" text={symbol.toUpperCase()} />
+			<Label
+				x={50}
+				y={20}
+				fontSize="20"
+				text={symbol?.toUpperCase() + "/" + vsCurrency?.toUpperCase()}
+			/>
 			{/* total volume traded */}
 			<Chart
 				id={2}
@@ -231,7 +236,7 @@ function ReactFinancialChart({ ohlcv, symbol='N/A' }) {
 
 				{/* legend for opening high low close of where the cursor is */}
 				<OHLCTooltip
-					origin={[80, -10]}
+					origin={[120, -10]}
 					textFill={openCloseColor}
 					labelFill="white"
 					fontSize={13}
