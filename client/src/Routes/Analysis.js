@@ -34,7 +34,7 @@ function Analysis() {
 				<ReactFinancialChart ohlcv={ohlcv} symbol={coin?.symbol} />
 			</div>
 			<div className="Analysis_sideinfo_container">
-				<SideInfo />
+				<SideInfo coin={coin} />
 			</div>
 			<div className="Analysis_buysell_container">
 				<BuySell />

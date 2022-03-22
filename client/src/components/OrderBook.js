@@ -7,9 +7,6 @@ const OrderBook = ({ symbol, vsCurrency }) => {
 	const [orders, setOrders] = useState({ bids: [], asks: [] });
 	const currencyPair = `${symbol}${vsCurrency}`;
 
-    console.log(`This is currencyPair`)
-    console.log(currencyPair)
-    
 	const currencyArray = currencyPair.toUpperCase().match(/.{1,3}/g);
 
 	useEffect(() => {
@@ -26,7 +23,6 @@ const OrderBook = ({ symbol, vsCurrency }) => {
 		};
 		ws.onmessage = (event) => {
 			const response = JSON.parse(event.data);
-			console.log(`connected to websocket`);
 
 			if (response.data.bids && response.data.asks) {
 				setOrders(response.data);
@@ -97,23 +93,23 @@ const OrderBook = ({ symbol, vsCurrency }) => {
 							}%)`,
 						}}
 					>
-                        {/* size */}
+						{/* size */}
 						<td>
 							<CurrencyFormat
 								renderText={(value) => value}
-								decimalScale={item.size < 0.01 ? 7 : 2}
+								decimalScale={item.size<10?4:2}
 								value={item.size}
 								displayType={"text"}
 								thousandSeparator={true}
 								prefix={""}
 							/>{" "}
 						</td>
-                        {/* price */}
+						{/* price */}
 						<td>
 							{" "}
 							<CurrencyFormat
 								renderText={(value) => value}
-								decimalScale={item.price < 0.01 ? 7 : 5}
+								decimalScale={item.price > 99 ? 0 : 4}
 								value={item.price}
 								displayType={"text"}
 								thousandSeparator={true}
