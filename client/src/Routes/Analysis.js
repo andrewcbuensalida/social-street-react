@@ -26,7 +26,7 @@ function Analysis() {
 		);
 		setCoin(newCoin);
 		getOhlcv(id);
-	}, [id, vsCurrency,filteredCoins]);
+	}, [id, vsCurrency, filteredCoins]);
 
 	return (
 		<div className="Analysis_container">
@@ -40,7 +40,10 @@ function Analysis() {
 				<BuySell />
 			</div>
 			<div className="Analysis_orderbook_container">
-				<OrderBook symbol={coin?.symbol} vsCurrency={coin?.vsCurrency}/>
+				<OrderBook
+					symbol={coin?.symbol}
+					vsCurrency={coin?.vsCurrency}
+				/>
 			</div>
 		</div>
 	);

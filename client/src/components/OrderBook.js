@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import CurrencyFormat from "react-currency-format";
+
 import "./OrderBook.css";
 
 const OrderBook = ({ symbol, vsCurrency }) => {
@@ -95,8 +97,29 @@ const OrderBook = ({ symbol, vsCurrency }) => {
 							}%)`,
 						}}
 					>
-						<td> {item.size} </td>
-						<td> {item.price} </td>
+                        {/* size */}
+						<td>
+							<CurrencyFormat
+								renderText={(value) => value}
+								decimalScale={item.size < 0.01 ? 7 : 2}
+								value={item.size}
+								displayType={"text"}
+								thousandSeparator={true}
+								prefix={""}
+							/>{" "}
+						</td>
+                        {/* price */}
+						<td>
+							{" "}
+							<CurrencyFormat
+								renderText={(value) => value}
+								decimalScale={item.price < 0.01 ? 7 : 5}
+								value={item.price}
+								displayType={"text"}
+								thousandSeparator={true}
+								prefix={""}
+							/>{" "}
+						</td>
 					</tr>
 				)
 			);
