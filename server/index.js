@@ -42,15 +42,15 @@ app.get("/api/v1/markets", (req, res) => {
 	}).then((json) => res.json(json));
 });
 
-app.get("/api/v1/analysis/ohlc/:id/:vs_currency", async (req, res) => {
+app.get("/api/v1/analysis/ohlc/:id/:vsCurrency", async (req, res) => {
 	let responseOhlc = null;
 	new Promise(async (resolve, reject) => {
 		try {
 			// to get ohlc data from coingecko
 			responseOhlc = await axios.get(
-				`https://api.coingecko.com/api/v3/coins/${req.params.id}/ohlc?vs_currency=${req.params.vs_currency}&days=30`
+				`https://api.coingecko.com/api/v3/coins/${req.params.id}/ohlc?vs_currency=${req.params.vsCurrency}&days=30`
 			);
-
+			
 			//to get the icon url from coinapi
 		} catch (ex) {
 			responseOhlc = null;

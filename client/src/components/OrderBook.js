@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./OrderBook.css";
 
-const OrderBook = ({ symbol }) => {
+const OrderBook = ({ symbol, vsCurrency }) => {
 	const [orders, setOrders] = useState({ bids: [], asks: [] });
-	const currencyPair = `${symbol}usd`;
+	const currencyPair = `${symbol}${vsCurrency}`;
 
+    console.log(`This is currencyPair`)
+    console.log(currencyPair)
+    
 	const currencyArray = currencyPair.toUpperCase().match(/.{1,3}/g);
 
 	useEffect(() => {
@@ -21,6 +24,8 @@ const OrderBook = ({ symbol }) => {
 		};
 		ws.onmessage = (event) => {
 			const response = JSON.parse(event.data);
+			console.log(`connected to websocket`);
+
 			if (response.data.bids && response.data.asks) {
 				setOrders(response.data);
 			}

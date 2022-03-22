@@ -28,11 +28,11 @@ import {
 	withSize,
 } from "react-financial-charts";
 import { initialData } from "./data";
-import './ReactFinancialChart.css'
+import "./ReactFinancialChart.css";
 
-function ReactFinancialChart({ ohlcv,symbol }) {
+function ReactFinancialChart({ ohlcv, symbol='N/A' }) {
 	const [formattedOhlcv, setFormattedOhlcv] = useState([{}]);
-    
+
 	useEffect(() => {
 		setFormattedOhlcv(
 			ohlcv.map((dataPoint) => ({
@@ -137,12 +137,7 @@ function ReactFinancialChart({ ohlcv,symbol }) {
 			xExtents={xExtents}
 			zoomAnchor={lastVisibleItemBasedZoomAnchor}
 		>
-			<Label
-				x={30}
-				y={20}
-				fontSize="20"
-				text={symbol.toUpperCase()}
-			/>
+			<Label x={30} y={20} fontSize="20" text={symbol.toUpperCase()} />
 			{/* total volume traded */}
 			<Chart
 				id={2}
@@ -154,7 +149,12 @@ function ReactFinancialChart({ ohlcv,symbol }) {
 			</Chart>
 
 			{/* main */}
-			<Chart id={3} height={chartHeight-30} yExtents={candleChartExtents} origin={[0,30]} >
+			<Chart
+				id={3}
+				height={chartHeight - 30}
+				yExtents={candleChartExtents}
+				origin={[0, 30]}
+			>
 				<XAxis
 					showGridLines={false}
 					showTickLabel={false}

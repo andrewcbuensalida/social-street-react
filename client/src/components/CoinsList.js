@@ -17,7 +17,7 @@ function CoinsList() {
 				<div>Daily Change</div>
 			</div>
 			{filteredCoins.map((coin) => (
-				<CoinRow key={coin.id+coin.vsCurrency} coin={coin} />
+				<CoinRow key={coin.id + coin.vsCurrency} coin={coin} />
 			))}
 		</div>
 	);

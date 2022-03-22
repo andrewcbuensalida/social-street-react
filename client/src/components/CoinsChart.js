@@ -6,7 +6,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function CoinsChart() {
 	const { filteredCoins } = useContext(MarketContext);
-
+	
 	const options = {
 		axisX: {
 			labelFontColor: "white",
