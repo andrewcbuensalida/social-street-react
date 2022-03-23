@@ -1,21 +1,26 @@
 .BuySell_selector_container {
 	display: flex;
 	justify-content: space-around;
+	margin-bottom: 1em;
 }
 
 .MuiButton-root.BuySell_selector {
 	width: 100%;
-    color: var(--grey-color);
+	color: var(--grey-color);
 }
 
 .BuySell_selector.buy {
-    color: var(--primary-color);
+	color: var(--primary-color);
 	border-bottom: 1px solid var(--primary-color);
-    border-radius: 0%;
+	border-radius: 0%;
 }
 
 .BuySell_selector.sell {
-    color: var(--red-color);
+	color: var(--red-color);
 	border-bottom: 1px solid var(--red-color);
-    border-radius: 0%;
+	border-radius: 0%;
+}
+
+#entryPrice {
+	color: white;
 }
