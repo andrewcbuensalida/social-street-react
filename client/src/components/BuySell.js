@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./BuySell.css";
-import { Typography, Button, Container, Input, TextField } from "@mui/material";
-import { styled, createTheme } from "@mui/material/styles";
+import { Typography, Input, InputAdornment, InputLabel, Select, Button, Container, TextField } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const MyTextField = styled(TextField)({
     width:'50%',
@@ -10,13 +10,14 @@ const MyTextField = styled(TextField)({
 		color: "primary",
 	},
 	"& label": {
-		color: "lightgrey",
+		color: "gray",
 	},
 	"& .MuiInput-underline:after": {
 		borderBottomColor: "transparent",
 	},
 	"& .MuiInput-root": {
 		borderBottom: "2px solid grey",
+        color:'white',
 		"&:hover ": {
 			borderBottom: "2px solid lightgrey",
 		},
@@ -77,7 +78,19 @@ function BuySell() {
 					InputLabelProps={{
 						shrink: true,
 					}}
+
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position="end" >
+								<Typography sx={{color:'gray'}}>USD</Typography> 
+							</InputAdornment>
+						),
+					}}
+                    
 				/>
+
+
+			
 
 				<label htmlFor="type">Type</label>
 				<select
