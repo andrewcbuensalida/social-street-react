@@ -3,8 +3,7 @@ TODO:
 	2. toolbar of candlestick
 	3. stop zooming out when it's too far candlestick
 	4. add other charts with candlestick
-	5. buy sell
-	6. side info
+
 
 ========================================
 the bar in the order book in ftx is the accumulation of the bid sizes above a number.
@@ -121,3 +120,7 @@ to get list of coins and prices, 24 volume, etc
 					},
 				}
 			);
+
+
+====================================
+can't upload files larger than 100mb to github
