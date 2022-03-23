@@ -8,6 +8,10 @@ const app = express();
 
 app.use(cors());
 
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static("client/build"));
+}
+
 app.get("/api/v1/markets", (req, res) => {
 	//should eventually fetch this from https://api.coingecko.com/api/v3/simple/supported_vs_currencies
 	let supportedVsCurrencies = ["usd", "eur"];

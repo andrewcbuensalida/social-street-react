@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import BASE_URL from "../endPoints";
 
 export const MarketContext = createContext();
 
@@ -31,18 +32,18 @@ export function MarketContextProvider({ children }) {
 	useEffect(() => {
 		async function getCrypto() {
 			const response = await axios.get(
-				"http://localhost:4000/api/v1/markets"
+				`${BASE_URL}/markets`
 			);
 			setCoins(response.data);
 		}
 		getCrypto();
 		//polling instead of web sockets. Turn on during production
-		// setTimeout(
-		// 	() => setPollCount((prevPollCount) => prevPollCount + 1),
-		// 	60000
-		// );
+		setTimeout(
+			() => setPollCount((prevPollCount) => prevPollCount + 1),
+			60000
+		);
 		// remove pollCount during development to prevent polling
-	}, []);
+	}, [pollCount]);
 
 	return (
 		<MarketContext.Provider value={{ filteredCoins }}>

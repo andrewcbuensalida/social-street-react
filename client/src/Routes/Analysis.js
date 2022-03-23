@@ -7,6 +7,7 @@ import OrderBook from "../components/OrderBook";
 import BuySell from "../components/BuySell";
 import SideInfo from "../components/SideInfo";
 import { MarketContext } from "../Context/MarketContext";
+import BASE_URL from "../endPoints";
 
 function Analysis() {
 	const [ohlcv, setOhlcv] = useState([{}]);
@@ -17,7 +18,7 @@ function Analysis() {
 	useEffect(() => {
 		async function getOhlcv(id) {
 			const response = await axios.get(
-				`http://localhost:4000/api/v1/analysis/ohlc/${id}/${vsCurrency}`
+				`${BASE_URL}/analysis/ohlc/${id}/${vsCurrency}`
 			);
 			setOhlcv(response.data);
 		}
