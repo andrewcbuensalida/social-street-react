@@ -19,9 +19,11 @@
 
 .Navbar_menu_icon {
 	height: 25px;
+	cursor: not-allowed;
 }
 
 .Navbar_account_icon {
 	color: var(--content-color);
 	margin-left: auto;
+	cursor: not-allowed;
 }

@@ -20,3 +20,40 @@
 	border-bottom: 1px solid var(--red-color);
 	border-radius: 0%;
 }
+
+.BuySell_row{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.BuySell_type_select_wrapper{
+    width: 50%;
+    margin-left: 1em;
+}
+
+#BuySell_type_select {
+	width: 100%;
+	font-size: 1rem;
+	background-color: transparent;
+	color: white;
+	padding: 5px;
+	border: none;
+	border-bottom: 2px solid gray;
+}
+
+#BuySell_type_select > option {
+	background-color: rgb(32, 32, 39);
+}
+
+.BuySell_type_select_wrapper > label {
+	content: "Type";
+	position: absolute;
+	transform: translateY(-20px);
+	color: gray;
+	font-size: 0.8rem;
+}
+
+.MuiButton-root.BuySell_submit{
+    cursor: not-allowed;
+}

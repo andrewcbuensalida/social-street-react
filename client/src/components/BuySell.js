@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import "./BuySell.css";
-import { Typography, Input, InputAdornment, InputLabel, Select, Button, Container, TextField } from "@mui/material";
+import {
+	Typography,
+	InputAdornment,
+	Button,
+	Container,
+	TextField,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const MyTextField = styled(TextField)({
-    width:'50%',
-    marginBottom:20,
+	width: "50%",
+	marginBottom: 20,
 	"& label.Mui-focused": {
 		color: "primary",
 	},
@@ -17,7 +23,7 @@ const MyTextField = styled(TextField)({
 	},
 	"& .MuiInput-root": {
 		borderBottom: "2px solid grey",
-        color:'white',
+		color: "white",
 		"&:hover ": {
 			borderBottom: "2px solid lightgrey",
 		},
@@ -64,49 +70,52 @@ function BuySell() {
 					</Button>
 				</div>
 
-				<MyTextField
-					required
-					variant="standard"
-					label="Entry price"
-					type="number"
-					id="entryPrice"
-					name="entryPrice"
-					value={entryPrice}
-					onChange={(e) => setEntryPrice(e.target.value)}
-					error={entryPriceError}
-					className="BuySell_entryPrice"
-					InputLabelProps={{
-						shrink: true,
-					}}
+				<div className="BuySell_row">
+					<MyTextField
+						required
+						variant="standard"
+						label="Entry price"
+						type="number"
+						id="entryPrice"
+						name="entryPrice"
+						value={entryPrice}
+						onChange={(e) => setEntryPrice(e.target.value)}
+						error={entryPriceError}
+						className="BuySell_entryPrice"
+						InputLabelProps={{
+							shrink: true,
+						}}
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position="end">
+									<Typography sx={{ color: "gray" }}>
+										USD
+									</Typography>
+								</InputAdornment>
+							),
+						}}
+					/>
 
-					InputProps={{
-						endAdornment: (
-							<InputAdornment position="end" >
-								<Typography sx={{color:'gray'}}>USD</Typography> 
-							</InputAdornment>
-						),
-					}}
-                    
-				/>
+					<div className="BuySell_type_select_wrapper">
+						<label for="BuySell_type_select">Type</label>
+						<select
+							id="BuySell_type_select"
+							value={type}
+							label="Type"
+							onChange={(e) => setType(e.target.value)}
+						>
+							<option value="market">Market</option>
+							<option value="limit">Limit</option>
+						</select>
+					</div>
+				</div>
 
-
-			
-
-				<label htmlFor="type">Type</label>
-				<select
-					name="type"
-					id="type"
-					value={type}
-					onChange={(e) => setType(e.target.value)}
-				>
-					<option value="market">Market</option>
-					<option value="limit">Limit</option>
-				</select>
 				<Button
 					fullWidth
 					color="info"
 					variant="outlined"
 					onClick={handleSubmit}
+                    className='BuySell_submit'
 				>
 					Submit
 				</Button>
