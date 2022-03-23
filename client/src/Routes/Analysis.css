@@ -23,9 +23,15 @@
 }
 
 @media screen and (max-width: 1000px) {
-.Analysis_sideinfo_container {
-	grid-column: 1/7;
+	.Analysis_sideinfo_container {
+		grid-column: 1/7;
+	}
 }
+
+@media screen and (max-width: 700px) {
+	.Analysis_sideinfo_container {
+		grid-column: 1/-1;
+	}
 }
 
 .Analysis_buysell_container {
@@ -33,12 +39,16 @@
 }
 
 @media screen and (max-width: 1000px) {
-.Analysis_buysell_container {
-	grid-column: 7/-1;
-}
+	.Analysis_buysell_container {
+		grid-column: 7/-1;
+	}
 }
 
-
+@media screen and (max-width: 700px) {
+	.Analysis_buysell_container {
+		grid-column: 1/-1;
+	}
+}
 .Analysis_orderbook_container::-webkit-scrollbar {
 	width: 5px;
 }
@@ -57,4 +67,16 @@
 	overflow: scroll;
 	scrollbar-width: none;
 	-ms-overflow-style: none; /* IE and Edge */
+}
+
+@media screen and (max-width: 1000px) {
+	.Analysis_orderbook_container {
+		grid-column: 3/11;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.Analysis_orderbook_container {
+		grid-column: 1/-1;
+	}
 }

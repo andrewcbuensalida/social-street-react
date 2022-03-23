@@ -53,7 +53,7 @@ function ReactFinancialChart({ ohlcv, symbol = "N/A", vsCurrency }) {
 		);
 	const height = 500;
 	const width = 600;
-	const margin = { left: 0, right: 48, top: 0, bottom: 24 };
+	const margin = { left: 0, right: 60, top: 0, bottom: 24 };
 
 	const ema12 = ema()
 		.id(1)
@@ -125,6 +125,7 @@ function ReactFinancialChart({ ohlcv, symbol = "N/A", vsCurrency }) {
 
 	return (
 		<ChartCanvas
+		className="ReactFinancialChart"
 			height={height}
 			ratio={3}
 			width={width}
