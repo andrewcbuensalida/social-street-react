@@ -69,6 +69,13 @@ app.get("/api/v1/analysis/ohlc/:id/:vsCurrency", async (req, res) => {
 	}).then((json) => res.json(json));
 });
 
+
+//if the user goes to an unknown route. this is actually really import to go to other routes. without this, and it shows cannot get /<path>
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
+
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
 	console.log(`Now listening for requests on port ${PORT}`);
