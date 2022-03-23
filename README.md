@@ -124,3 +124,12 @@ to get list of coins and prices, 24 volume, etc
 
 ====================================
 can't upload files larger than 100mb to github
+trying this 
+https://stackoverflow.com/questions/2100907/how-to-remove-delete-a-large-file-from-commit-history-in-the-git-repository
+
+went to swe directory, put jar file in there, then ran this in cmd
+java -jar bfg-1.14.0.jar --delete-files symbols.js social-street-react
+then
+cd into repo
+then
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
