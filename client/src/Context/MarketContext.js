@@ -31,6 +31,8 @@ export function MarketContextProvider({ children }) {
 
 	useEffect(() => {
 		async function getCrypto() {
+			console.log(`getting markets from frontend`)
+			
 			const response = await axios.get(
 				`${BASE_URL}/markets`
 			);

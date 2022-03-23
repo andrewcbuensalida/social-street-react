@@ -17,6 +17,8 @@ function Analysis() {
 
 	useEffect(() => {
 		async function getOhlcv(id) {
+			console.log(`getting ohlc from frontend`)
+			
 			const response = await axios.get(
 				`${BASE_URL}/analysis/ohlc/${id}/${vsCurrency}`
 			);

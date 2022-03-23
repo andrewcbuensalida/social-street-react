@@ -12,6 +12,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.get("/api/v1/markets", (req, res) => {
+	console.log(`markets hit`)
+	
 	//should eventually fetch this from https://api.coingecko.com/api/v3/simple/supported_vs_currencies
 	let supportedVsCurrencies = ["usd", "eur"];
 	let coinsVsCurrencies = [];
@@ -46,6 +48,8 @@ app.get("/api/v1/markets", (req, res) => {
 });
 
 app.get("/api/v1/analysis/ohlc/:id/:vsCurrency", async (req, res) => {
+	console.log(`ohlc hit`)
+	
 	let responseOhlc = null;
 	new Promise(async (resolve, reject) => {
 		try {
