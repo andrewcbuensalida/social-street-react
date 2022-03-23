@@ -2,16 +2,34 @@
 	display: grid;
 	grid-template-columns: 3fr 5fr 11fr 11fr 6fr 5fr;
 	border: 0.1px solid rgb(48, 48, 48);
-    color: inherit;
-    text-decoration: inherit;
+	color: inherit;
+	text-decoration: inherit;
 }
 
-.CoinRow_row:hover{
-    background-color: rgba(255, 255, 255,.1);
+@media screen and (max-width: 777px) {
+	.CoinRow_row {
+		grid-template-columns: 3fr 5fr 11fr 11fr 6fr;
+	}
 }
 
-.CoinRow_icon{
-	min-width: 56px
+@media screen and (max-width: 600px) {
+	.CoinRow_row {
+		grid-template-columns: 5fr 11fr 6fr;
+	}
+}
+
+.CoinRow_row:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.CoinRow_icon {
+	min-width: 56px;
+}
+
+@media screen and (max-width: 600px) {
+	.CoinRow_icon {
+		display: none;
+	}
 }
 
 .CoinRow_icon_img {
@@ -22,8 +40,8 @@
 	padding: 1em;
 }
 
-.CoinRow_symbol{
-    color: var(--primary-color);
+.CoinRow_symbol {
+	color: var(--primary-color);
 }
 
 .CoinRow_negative {
@@ -32,4 +50,16 @@
 
 .CoinRow_positive {
 	color: red;
+}
+
+@media screen and (max-width: 777px) {
+	.CoinRow_marketcap_content {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.CoinRow_name {
+		display: none;
+	}
 }

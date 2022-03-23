@@ -17,8 +17,8 @@ function CoinRow({ coin }) {
 				{coin.symbol.toUpperCase()}/{coin.vsCurrency.toUpperCase()}
 			</div>
 
-			<div>{coin.name}</div>
-			<div>
+			<div className="CoinRow_name">{coin.name}</div>
+			<div className="CoinRow_marketcap_content">
 				<CurrencyFormat
 					renderText={(value) => value}
 					decimalScale={2}

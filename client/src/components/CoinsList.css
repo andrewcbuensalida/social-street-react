@@ -1,10 +1,39 @@
 .CoinsList_header {
 	display: grid;
-    grid-template-columns: 3fr 5fr 11fr 11fr 6fr 5fr;
+	grid-template-columns: 3fr 5fr 11fr 11fr 6fr 5fr;
 	border: 0.1px solid rgb(94, 94, 94);
-
 }
+
+@media screen and (max-width: 777px) {
+	.CoinsList_header {
+		grid-template-columns: 3fr 5fr 11fr 11fr 6fr;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.CoinsList_header {
+		grid-template-columns: 5fr 11fr 6fr;
+	}
+}
+
 .CoinsList_header > * {
 	padding: 1em;
 }
 
+@media screen and (max-width: 777px) {
+	.CoinsList_marketcap_header {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.CoinsList_icon_header {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.CoinsList_name_header {
+		display: none;
+	}
+}

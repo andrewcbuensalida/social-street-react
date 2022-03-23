@@ -9,10 +9,10 @@ function CoinsList() {
 	return (
 		<div>
 			<div className="CoinsList_header">
-				<div></div>
+				<div className="CoinsList_icon_header"></div>
 				<div>Ticker</div>
-				<div>Name</div>
-				<div>Market Cap</div>
+				<div className="CoinsList_name_header">Name</div>
+				<div className="CoinsList_marketcap_header">Market Cap</div>
 				<div>Price</div>
 				<div>Daily Change</div>
 			</div>
